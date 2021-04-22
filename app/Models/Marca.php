@@ -11,5 +11,9 @@ class Marca extends Model
 
     protected $table = "marcas";
     protected $primarykey = 'idMarca';
+    public $incrementing = true;
     public $timestamps = false;
+
+
+    protected $fillable = ['mkNombre'];
 }

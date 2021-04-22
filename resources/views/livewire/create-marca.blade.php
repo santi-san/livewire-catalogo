@@ -13,7 +13,7 @@
         <x-slot name="content">
             <div class="mb-4">
                 <x-jet-label value="Nombre de la marca"/>
-                <x-jet-input type="text" class="w-full" />
+                <x-jet-input type="text" class="w-full" wire:model.defer="mkNombre"/>
             </div>
         </x-slot>
 
@@ -22,7 +22,7 @@
                 Cancelar
             </x-jet-secondary-button>
 
-            <x-jet-danger-button>
+            <x-jet-danger-button wire:click="save">
                 Crear post
             </x-jet-danger-button>
         </x-slot>
