@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
         <!-- FAwesome -->
         <link rel="stylesheet" href="{{ asset('vendor/fontawesome/css/all.min.css') }}">
+        
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
@@ -18,6 +19,8 @@
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+        {{-- Sweet Alert --}}
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
@@ -43,5 +46,15 @@
         @stack('modals')
 
         @livewireScripts
+
+        <script>
+            Livewire.on('alert', function($message){
+                Swal.fire(
+                    'Good job!',
+                    message,
+                    'success'
+                )
+            })
+        </script>
     </body>
 </html>

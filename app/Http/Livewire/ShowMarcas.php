@@ -11,7 +11,8 @@ class ShowMarcas extends Component
     public $search = '';
     public $sort = 'idMarca';
     public $direction = 'desc';
-
+    # Escucha 'render' de CreateMarca y ejecuta el metodo render() de ShowMarcas 
+    protected $listeners = ['render' => 'render'];
 
     public function render()
     {

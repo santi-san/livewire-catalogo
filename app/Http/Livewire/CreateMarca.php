@@ -8,7 +8,7 @@ use Livewire\Component;
 class CreateMarca extends Component
 {
     public $mkNombre;
-    public $open = true;
+    public $open = false;
 
     public function render()
     {
@@ -20,5 +20,11 @@ class CreateMarca extends Component
         Marca::create([
             'mkNombre' => $this->mkNombre
         ]);
+
+        $this->reset();
+
+        $this->emit('render');
+        
+        $this->emit('alert', 'La marca se creo satisfactoriamente');
     }
 }
