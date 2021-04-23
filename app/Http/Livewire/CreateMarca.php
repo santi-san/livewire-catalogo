@@ -23,7 +23,8 @@ class CreateMarca extends Component
 
         $this->reset();
 
-        $this->emit('render');
+        # emitTo limita el componente que escucha el evento render
+        $this->emitTo('show-marcas','render');
         
         $this->emit('alert', 'La marca se creo satisfactoriamente');
     }
