@@ -8,7 +8,7 @@ use Livewire\Component;
 class CreateMarca extends Component
 {
     public $mkNombre;
-    public $open = false;
+    public $open = true;
 
     protected $rules = [
         'mkNombre' => 'required|min:2|max:30',
