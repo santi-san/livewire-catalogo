@@ -11,10 +11,15 @@
         </x-slot>
 
         <x-slot name="content">
+
             <div class="mb-4">
                 <x-jet-label value="Nombre de la marca"/>
-                <x-jet-input type="text" class="w-full" wire:model.defer="mkNombre"/>
+                <x-jet-input type="text" class="w-full" wire:model="mkNombre"/>
+
+                {{-- Validation --}}
+                <x-jet-input-error for="mkNombre"/>
             </div>
+
         </x-slot>
 
         <x-slot name="footer">

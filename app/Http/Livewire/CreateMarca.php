@@ -10,13 +10,26 @@ class CreateMarca extends Component
     public $mkNombre;
     public $open = false;
 
-    public function render()
+    protected $rules = [
+        'mkNombre' => 'required|min:2|max:30',
+    ];
+
+    protected $messages = [
+        'mkNombre.required' => 'La marca no puede estar vacia.',
+        'mkNombre.min' => 'La marca debe tener al menos 2 caracteres.',
+        'mkNombre.max' => 'La marca no debe tener mas de 30 caracteres.'
+    ];
+
+    public function updated($propertyName)
     {
-        return view('livewire.create-marca');
+        $this->validateOnly($propertyName);
     }
 
     public function save()
     {
+
+        $this->validate();
+
         Marca::create([
             'mkNombre' => $this->mkNombre
         ]);
@@ -27,5 +40,10 @@ class CreateMarca extends Component
         $this->emitTo('show-marcas','render');
         
         $this->emit('alert', 'La marca se creo satisfactoriamente');
+    }
+
+    public function render()
+    {
+        return view('livewire.create-marca');
     }
 }
