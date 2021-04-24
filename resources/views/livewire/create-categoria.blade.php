@@ -1,6 +1,6 @@
 <div>
     <x-jet-danger-button wire:click="$set('open', 'true')">
-        Crear nueva marca
+        Crear nueva categoria
     </x-jet-danger-button>
 
 
@@ -14,10 +14,10 @@
 
             <div class="mb-4">
                 <x-jet-label value="Nombre de la marca"/>
-                <x-jet-input type="text" class="w-full" wire:model="mkNombre"/>
+                <x-jet-input type="text" class="w-full" wire:model="catNombre"/>
 
                 {{-- Validation --}}
-                <x-jet-input-error for="mkNombre"/>
+                <x-jet-input-error for="catNombre"/>
             </div>
 
         </x-slot>

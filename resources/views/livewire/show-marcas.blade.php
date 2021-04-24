@@ -14,7 +14,7 @@
 
             <div class="px-6 py-4 flex items-center">
                 <x-jet-input class="flex-1 mr-4" placeholder="Escriba lo que quiere buscar" type="text" wire:model="search"/>
-
+                {{-- create modal --}}
                 @livewire('create-marca')
             </div>
             @if ($marcas->count())
