@@ -2,6 +2,7 @@
 
 use App\Http\Livewire\ShowCategorias;
 use App\Http\Livewire\ShowMarcas;
+use App\Http\Livewire\ShowProductos;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,3 +25,6 @@ Route::middleware(['auth:sanctum', 'verified'])
 
 Route::middleware(['auth:sanctum', 'verified'])
         ->get('/categorias', ShowCategorias::class)->name('categorias');
+
+Route::middleware(['auth:sanctum', 'verified'])
+        ->get('/productos', ShowProductos::class)->name('productos');

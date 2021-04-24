@@ -7,13 +7,13 @@
     <x-jet-dialog-modal wire:model="open">
 
         <x-slot name="title">
-            Crear nueva marca
+            Crear nueva categoria
         </x-slot>
 
         <x-slot name="content">
 
             <div class="mb-4">
-                <x-jet-label value="Nombre de la marca"/>
+                <x-jet-label value="Nombre de la categoria"/>
                 <x-jet-input type="text" class="w-full" wire:model="catNombre"/>
 
                 {{-- Validation --}}

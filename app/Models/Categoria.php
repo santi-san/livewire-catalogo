@@ -11,7 +11,6 @@ class Categoria extends Model
 
     protected $table = 'categorias';
     protected $primarykey = 'idCategoria';
-    public $incrementing = true;
     public $timestamps = false;
 
 
