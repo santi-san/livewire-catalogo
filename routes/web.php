@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\ShowCategorias;
 use App\Http\Livewire\ShowMarcas;
 use Illuminate\Support\Facades\Route;
 
@@ -18,4 +19,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard',ShowMarcas::class)->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])
+        ->get('/dashboard', ShowMarcas::class)->name('dashboard');
+
+Route::middleware(['auth:sanctum', 'verified'])
+        ->get('/categorias', ShowCategorias::class)->name('categorias');
