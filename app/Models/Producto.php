@@ -20,7 +20,7 @@ class Producto extends Model
             'prdPrecio',
             'idMarca',
             'idCategoria',
-            'prdPresentacion ',
+            'prdPresentacion',
             'prdStock',
             'prdImagen',
         ];
