@@ -171,10 +171,10 @@
                                 <div class="text-sm text-gray-900">{{$producto->prdPrecio}}</div>
                             </td>
                             <td class="px-6 py-4">
-                                <div class="text-sm text-gray-900">{{$producto->idMarca}}</div>
+                                <div class="text-sm text-gray-900">{{$producto->relMarca->mkNombre}}</div>
                             </td>
                             <td class="px-6 py-4">
-                                <div class="text-sm text-gray-900">{{$producto->idCategoria}}</div>
+                                <div class="text-sm text-gray-900">{{$producto->relCategoria->catNombre}}</div>
                             </td>
                             <td class="px-6 py-4">
                                 <div class="text-sm text-gray-900">{{$producto->prdPresentacion}}</div>

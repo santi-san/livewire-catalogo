@@ -19,6 +19,7 @@ class ShowProductos extends Component
     {
         $productos = Producto::where('prdNombre', 'like', '%' . $this->search .'%')
                         ->orderBy($this->sort, $this->direction)
+                        ->with('relMarca', 'relCategoria')
                         ->get();
         return view('livewire.show-productos', compact('productos'));
     }
