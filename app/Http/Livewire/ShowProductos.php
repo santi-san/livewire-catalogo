@@ -2,8 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Categoria;
-use App\Models\Marca;
 use App\Models\Producto;
 use Livewire\Component;
 
@@ -20,7 +18,6 @@ class ShowProductos extends Component
     public function render()
     {
         $productos = Producto::where('prdNombre', 'like', '%' . $this->search .'%')
-                        ->with('relMarca', 'relCategoria')
                         ->join('marcas', 'productos.idMarca', '=', 'marcas.idMarca')
                         ->join('categorias', 'productos.idCategoria', '=', 'categorias.idCategoria')
                         ->orderBy($this->sort, $this->direction)
