@@ -70,11 +70,11 @@
                             </th>
                             <th scope="col"
                                 class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                wire:click="order('idMarca')">
+                                wire:click="order('mkNombre')">
                                 Marca
 
                                 {{-- Sort --}}
-                                @if ($sort == 'idMarca')
+                                @if ($sort == 'mkNombre')
                                     @if ($direction == 'asc')
                                         <i class="fas fa-sort-alpha-up-alt float-right"></i>
                                     @else
@@ -87,11 +87,11 @@
                             </th>
                             <th scope="col"
                                 class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                wire:click="order('idCategoria')">
+                                wire:click="order('catNombre')">
                                 Categoria
 
                                 {{-- Sort --}}
-                                @if ($sort == 'idCategoria')
+                                @if ($sort == 'catNombre')
                                     @if ($direction == 'asc')
                                         <i class="fas fa-sort-alpha-up-alt float-right"></i>
                                     @else
