@@ -183,11 +183,11 @@
                                 <div class="text-sm text-gray-900">{{$producto->prdStock}}</div>
                             </td>
                             <td class="px-6 py-4">
-                               <img src="{{$producto->prdImagen}}" alt="{{$producto->prdImagen}}">
+                               <img src="{{$producto->prdImagen}}" alt="">
                             </td>
-                            <td class="px-6 py-4 text-right text-sm font-medium">
-                                <div class="text-sm text-gray-900">editar</div>
-                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Eliminar</a>
+                            <td class="px-6 py-4 text-sm font-medium">
+                                @livewire('edit-producto', ['producto' => $producto], key($producto->idProducto))
+                                {{-- <a href="#" class="text-indigo-600 hover:text-indigo-900">Eliminar</a> --}}
                             </td>
                         </tr>
                         @endforeach
