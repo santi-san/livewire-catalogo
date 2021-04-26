@@ -183,7 +183,7 @@
                                 <div class="text-sm text-gray-900">{{$producto->prdStock}}</div>
                             </td>
                             <td class="px-6 py-4">
-                                <div class="text-sm text-gray-900">{{$producto->prdImagen}}</div>
+                               <img src="{{$producto->prdImagen}}" alt="{{$producto->prdImagen}}">
                             </td>
                             <td class="px-6 py-4 text-right text-sm font-medium">
                                 <div class="text-sm text-gray-900">editar</div>
