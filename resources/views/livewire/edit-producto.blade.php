@@ -26,32 +26,14 @@
             </div>
 
             <div class="mb-4">
-                <select name="idCategoria" class="form-control" wire:model="idCategoria">
+                <select name="idCategoria" class="form-control" wire:model="producto.idCategoria">
                     @foreach ($categorias as $categoria)
                         <option {{($producto->idCategoria == $categoria->idCategoria) ? 'selected' : '' }}
                                 value="{{ $categoria->idCategoria }}" >
                                 {{ $categoria->catNombre }}
                         </option>
                     @endforeach
-                    {{-- weird way to have the category of the product selected first and then show the others categories
-                         @foreach ($categorias as $categoria)
-                        @if ($producto->idCategoria == $categoria->idCategoria)
-                            <option selected
-                                value="{{ $categoria->idCategoria }}" >
-                                {{ $categoria->catNombre }}
-                            </option>
-                        @endif
-                        
-                        @endforeach
-                        @foreach ($categorias as $categoria)
-                            @if ($producto->idCategoria !== $categoria->idCategoria)
-                            <option 
-                            value="{{ $categoria->idCategoria }}" >
-                            {{ $categoria->catNombre }}
-                        </option>
-                            @endif
-                        @endforeach --}}
-                </select>
+                 </select>
             </div>
 
 
