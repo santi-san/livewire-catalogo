@@ -53,9 +53,8 @@ class CreateProducto extends Component
 
     public function save()
     {
-
         $this->validate();
-        $img = $this->prdImagen->store('productos');
+        $img = $this->prdImagen->store('productos', 'public');
 
         Producto::create([
             'prdNombre' => $this->prdNombre,

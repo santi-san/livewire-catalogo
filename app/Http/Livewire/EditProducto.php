@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Categoria;
 use App\Models\Marca;
 use App\Models\Producto;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -13,15 +14,16 @@ class EditProducto extends Component
     use WithFileUploads;
 
     public $open = false;
-    public $producto, $prdNombre, $prdPrecio, $prdStock, $idMarca, $idCategoria, $prdPresentacion, $prdImagen, $identificador;
+    public $producto, $prdImagen, $identificador;
 
     protected $rules = [
             'producto.prdNombre' =>'required|min:2|max:30',
             'producto.prdPrecio' =>'required',
-            'producto.idMarca' =>'required|numeric',
-            'producto.idCategoria' =>'required|numeric',
+            'producto.idMarca' =>'required',
+            'producto.idCategoria' =>'required',
             'producto.prdPresentacion' =>'required',
             'producto.prdStock' =>'required',
+            'producto.prdImagen' => 'required|image|max:2048',
         ];
 
     public function mount(Producto $producto)
@@ -31,20 +33,27 @@ class EditProducto extends Component
         $this->identificador = rand();
     }
 
-    public function save()
-    {
+    public function save() {
         $this->validate();
+        
+        
+        if ($this->prdImagen) {
+            Storage::delete([$this->producto->prdImagen]);
+
+            $this->producto->prdImagen = $this->prdImagen->store('productos', 'public');
+        }
+        
         $this->producto->save();
 
         $this->reset();
+
+        $this->identificador = rand();
 
         $this->emitTo('show-productos','render');
         $this->emit('alert', 'El producto se actualizo satisfactoriamente');
     }
     public function render()
     {
-        $marcas = Marca::all();
-        $categorias = Categoria::all();
-        return view('livewire.edit-producto', compact('marcas','categorias'));
+        return view('livewire.edit-producto');
     }
 }

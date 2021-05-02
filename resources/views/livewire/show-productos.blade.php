@@ -137,21 +137,8 @@
                                 
                             </th>
                             <th scope="col"
-                                class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                wire:click="order('prdImagen')">
+                                class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Imagen
-
-                                {{-- Sort --}}
-                                @if ($sort == 'prdImagen')
-                                    @if ($direction == 'asc')
-                                        <i class="fas fa-sort-alpha-up-alt float-right"></i>
-                                    @else
-                                        <i class="fas fa-sort-alpha-down-alt float-right"></i>
-                                    @endif
-                                @else
-                                    <i class="fas fa-sort float-right"></i>
-                                @endif
-                                
                             </th>
                             <th scope="col" 
                                 class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -183,11 +170,10 @@
                                 <div class="text-sm text-gray-900">{{$producto->prdStock}}</div>
                             </td>
                             <td class="px-6 py-4">
-                               <img src="{{$producto->prdImagen}}" alt="">
+                               <img src="{{Storage::url($producto->prdImagen)}}" alt="">
                             </td>
                             <td class="px-6 py-4 text-sm font-medium">
                                 @livewire('edit-producto', ['producto' => $producto], key($producto->idProducto))
-                                {{-- <a href="#" class="text-indigo-600 hover:text-indigo-900">Eliminar</a> --}}
                             </td>
                         </tr>
                         @endforeach
