@@ -14,7 +14,7 @@ class EditProducto extends Component
     use WithFileUploads;
 
     public $open = false;
-    public $producto, $prdImagen, $identificador;
+    public $producto, $img, $identificador;
 
     protected $rules = [
             'producto.prdNombre' =>'required|min:2|max:30',
@@ -23,7 +23,6 @@ class EditProducto extends Component
             'producto.idCategoria' =>'required',
             'producto.prdPresentacion' =>'required',
             'producto.prdStock' =>'required',
-            'producto.prdImagen' => 'required|image|max:2048',
         ];
 
     public function mount(Producto $producto)
@@ -35,14 +34,11 @@ class EditProducto extends Component
 
     public function save() {
         $this->validate();
-        
-        
-        if ($this->prdImagen) {
+        if($this->img) {
             Storage::delete([$this->producto->prdImagen]);
 
             $this->producto->prdImagen = $this->prdImagen->store('productos', 'public');
         }
-        
         $this->producto->save();
 
         $this->reset();

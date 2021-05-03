@@ -29,12 +29,13 @@
                 <x-jet-label value="Stock"/>
                 <x-jet-input wire:model="producto.prdStock" type="number" class="w-full"/>
             </div>
+
+
             <div class="mb-4">
-                <input type="file" wire:model="prdImagen" id="{{$identificador}}">
-                {{-- Validation --}}
-                <x-jet-input-error for="prdImagen"/>
+                <input type="file" wire:model="img" id="{{$identificador}}">
+                <x-jet-input-error for="img" />
             </div>
-            <div wire:loading wire:target="prdImagen" class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
+            <div wire:loading wire:target="img" class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
                 <div class="flex">
                     <div class="py-1">
                         <svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -48,11 +49,11 @@
                 </div>
             </div>
 
-                @if ($prdImagen)
-                    <img src="{{$prdImagen->temporaryUrl()}}" alt="">
-                    @else
-                    <img src="{{Storage::url($producto->prdImagen)}}" alt="">
-                @endif
+            @if ($img)
+                <img src="{{$img->temporaryUrl()}}" alt="">
+            @else
+                <img src="{{Storage::url($producto->prdImagen)}}" alt="">
+            @endif
         </x-slot>
 
         <x-slot name="footer">
