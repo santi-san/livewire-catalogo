@@ -35,6 +35,11 @@ class ShowProductos extends Component
         $this->producto = new Producto();
     }
 
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
     public function render()
     {
         $productos = Producto::where('prdNombre', 'like', '%' . $this->search .'%')
