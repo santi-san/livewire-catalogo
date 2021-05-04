@@ -187,6 +187,12 @@
                     No se encontraron registros para <strong>{{$search}}</strong>
                 </div>
             @endif
+            
+            @if ($productos->hasPages())
+                <div class="px-6 py-3">
+                    {{$productos->links()}}
+                </div>
+            @endif
         </x-table>
     </div>
 

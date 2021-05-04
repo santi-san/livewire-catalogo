@@ -6,9 +6,13 @@ use App\Models\Producto;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Livewire\WithPagination;
+
 class ShowProductos extends Component
 {
     use WithFileUploads;
+    use WithPagination;
+
     public $search, $producto, $prdImagen, $identificador;
     public $open_edit = false;
     public $sort = 'idProducto';
@@ -37,7 +41,7 @@ class ShowProductos extends Component
                         ->join('marcas', 'productos.idMarca', '=', 'marcas.idMarca')
                         ->join('categorias', 'productos.idCategoria', '=', 'categorias.idCategoria')
                         ->orderBy($this->sort, $this->direction)
-                        ->get();
+                        ->paginate(10);
         return view('livewire.show-productos', compact('productos'));
     }
 
