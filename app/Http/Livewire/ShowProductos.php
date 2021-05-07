@@ -13,10 +13,21 @@ class ShowProductos extends Component
     use WithFileUploads;
     use WithPagination;
 
-    public $search, $producto, $prdImagen, $identificador;
+    public $producto, $prdImagen, $identificador;
+    public $search = '';
     public $open_edit = false;
     public $sort = 'idProducto';
     public $direction = 'desc';
+    public $cant = '10';
+
+    protected $queryString = 
+        [
+            'cant' => ['except' => '10'],
+            'sort' => ['except' => 'idProducto'],
+            'direction' => ['except' => 'desc'], 
+            'search' => ['except' => '']
+        ];
+
     protected $rules = [
         'producto.prdNombre' =>'required|min:2|max:30',
         'producto.prdPrecio' =>'required',
@@ -46,7 +57,7 @@ class ShowProductos extends Component
                         ->join('marcas', 'productos.idMarca', '=', 'marcas.idMarca')
                         ->join('categorias', 'productos.idCategoria', '=', 'categorias.idCategoria')
                         ->orderBy($this->sort, $this->direction)
-                        ->paginate(10);
+                        ->paginate($this->cant);
         return view('livewire.show-productos', compact('productos'));
     }
 
