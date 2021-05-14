@@ -1,4 +1,4 @@
-<div>
+<div wire:init="loadProductos">
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -6,10 +6,10 @@
         </h2>
     </x-slot>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 py-12">
         <x-table>
 
-            <div class="px-6 py-4 flex items-center">
+            <div class="px-5 py-4 flex items-center">
 
                 <div class="flex items-center">
                     <span>Mostrar</span>
@@ -26,12 +26,12 @@
                 {{-- create modal --}}
                 @livewire('create-producto')
             </div>
-            @if ($productos->count())
+            @if (count($productos))
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
                             <th scope="col"
-                                class="w-24 cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                class="w-32 cursor-pointer px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                 wire:click="order('idProducto')">
                                 ID
 
@@ -47,7 +47,7 @@
                                 @endif
                             </th>
                             <th scope="col"
-                                class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                class="cursor-pointer px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                 wire:click="order('prdNombre')">
                                 Producto
 
@@ -64,7 +64,7 @@
                                 
                             </th>
                             <th scope="col"
-                                class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                class="cursor-pointer px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                 wire:click="order('prdPrecio')">
                                 Precio
 
@@ -81,7 +81,7 @@
                                 
                             </th>
                             <th scope="col"
-                                class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                class="cursor-pointer px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                 wire:click="order('mkNombre')">
                                 Marca
 
@@ -98,7 +98,7 @@
                                 
                             </th>
                             <th scope="col"
-                                class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                class="cursor-pointer px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                 wire:click="order('catNombre')">
                                 Categoria
 
@@ -115,7 +115,7 @@
                                 
                             </th>
                             <th scope="col"
-                                class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                class="cursor-pointer px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                 wire:click="order('prdPresentacion')">
                                 Presentacion
 
@@ -132,7 +132,7 @@
                                 
                             </th>
                             <th scope="col"
-                                class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                class="cursor-pointer px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                 wire:click="order('prdStock')">
                                 Stock
 
@@ -149,36 +149,37 @@
                                 
                             </th>
                             <th scope="col"
-                                class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                class="cursor-pointer px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Imagen
                             </th>
                             <th scope="col" 
-                                class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                class="cursor-pointer px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Opciones
                             </th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
                         @foreach ($productos as $item)
                         <tr>
-                            <td class="px-6 py-4">
+                            <td class="px-5 py-4">
                                 <div class="text-sm text-gray-900">{{$item->idProducto}}</div>
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-5 py-4">
                                 <div class="text-sm text-gray-900">{{$item->prdNombre}}</div>
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-5 py-4">
                                 <div class="text-sm text-gray-900">{{$item->prdPrecio}}</div>
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-5 py-4">
                                 <div class="text-sm text-gray-900">{{$item->mkNombre}}</div>
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-5 py-4">
                                 <div class="text-sm text-gray-900">{{$item->catNombre}}</div>
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-5 py-4">
                                 <div class="text-sm text-gray-900">{{$item->prdPresentacion}}</div>
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-5 py-4">
                                 <div class="text-sm text-gray-900">{{$item->prdStock}}</div>
                             </td>
                             <td class="px-6 py-4">
@@ -194,17 +195,18 @@
                         @endforeach
                     </tbody>
                 </table>
+                @if ($productos->hasPages())
+                    <div class="px-5 py-3">
+                        {{$productos->links()}}
+                    </div>
+                @endif
             @else
-                <div class="px-6 py-4">
+                <div class="px-5 py-4">
                     No se encontraron registros para <strong>{{$search}}</strong>
                 </div>
             @endif
             
-            @if ($productos->hasPages())
-                <div class="px-6 py-3">
-                    {{$productos->links()}}
-                </div>
-            @endif
+           
         </x-table>
     </div>
 

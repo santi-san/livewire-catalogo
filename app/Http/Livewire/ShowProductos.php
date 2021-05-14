@@ -19,6 +19,7 @@ class ShowProductos extends Component
     public $sort = 'idProducto';
     public $direction = 'desc';
     public $cant = '10';
+    public $readyToLoad = false;
 
     protected $queryString = 
         [
@@ -53,12 +54,22 @@ class ShowProductos extends Component
 
     public function render()
     {
-        $productos = Producto::where('prdNombre', 'like', '%' . $this->search .'%')
-                        ->join('marcas', 'productos.idMarca', '=', 'marcas.idMarca')
-                        ->join('categorias', 'productos.idCategoria', '=', 'categorias.idCategoria')
-                        ->orderBy($this->sort, $this->direction)
-                        ->paginate($this->cant);
+
+        if ($this->readyToLoad) {
+            $productos = Producto::where('prdNombre', 'like', '%' . $this->search .'%')
+            ->join('marcas', 'productos.idMarca', '=', 'marcas.idMarca')
+            ->join('categorias', 'productos.idCategoria', '=', 'categorias.idCategoria')
+            ->orderBy($this->sort, $this->direction)
+            ->paginate($this->cant);
+        }
+        else{
+            $productos = [];
+        }
         return view('livewire.show-productos', compact('productos'));
+    }
+
+    public function loadProductos(){
+        $this->readyToLoad = true;
     }
 
     public function order($sort)
