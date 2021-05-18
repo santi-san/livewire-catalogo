@@ -51,10 +51,15 @@
                 <x-jet-input-error for="idCategoria"/>
             </div>
 
-
-            <div class="mb-4">
+{{$prdPresentacion}}
+            <div class="mb-4" wire:ignore>
                 <x-jet-label value="Presentacion"/>
-                <textarea class="form-control w-full" rows="6" wire:model="prdPresentacion"></textarea> 
+                <textarea 
+                    wire:model="prdPresentacion"
+                    id="editor" 
+                    class="form-control w-full" 
+                    rows="6">
+                </textarea> 
 
                 {{-- Validation --}}
                 <x-jet-input-error for="prdPresentacion"/>
@@ -109,4 +114,22 @@
 
     </x-jet-dialog-modal>
 
+    @push('js')
+        <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
+    
+        <script>
+            ClassicEditor
+                .create( document.querySelector( '#editor' ) )
+                .then(function(editor){
+                    editor.model.document.on('change:data', () => {
+                    
+                        @this.set('prdPresentacion', editor.getData());
+                    })
+                })
+                .catch( error => {
+                    console.error( error );
+                } );
+        </script>
+    
+        @endpush
 </div>

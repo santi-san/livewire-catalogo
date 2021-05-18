@@ -17,6 +17,7 @@
 
         @livewireStyles
 
+        @stack('css')
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
         {{-- Sweet Alert --}}
@@ -46,7 +47,7 @@
         @stack('modals')
 
         @livewireScripts
-
+        @stack('js')
         <script>
             Livewire.on('alert', function(message){
                 Swal.fire(
