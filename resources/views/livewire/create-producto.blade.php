@@ -51,7 +51,6 @@
                 <x-jet-input-error for="idCategoria"/>
             </div>
 
-{{$prdPresentacion}}
             <div class="mb-4" wire:ignore>
                 <x-jet-label value="Presentacion"/>
                 <textarea 

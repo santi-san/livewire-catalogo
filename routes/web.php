@@ -21,7 +21,10 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])
-        ->get('/dashboard', ShowMarcas::class)->name('dashboard');
+        ->get('/dashboard', ShowProductos::class)->name('dashboard');
+
+Route::middleware(['auth:sanctum', 'verified'])
+        ->get('/marcas', ShowMarcas::class)->name('marcas');
 
 Route::middleware(['auth:sanctum', 'verified'])
         ->get('/categorias', ShowCategorias::class)->name('categorias');

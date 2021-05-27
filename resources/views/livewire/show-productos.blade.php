@@ -259,11 +259,11 @@
                 </div>
             </div>
 
-                @if ($prdImagen)
-                    <img src="{{ $prdImagen->temporaryUrl() }}" alt="">
-                    @else
-                        <img src="{{Storage::url($producto->prdImagen)}}" alt="">
-                @endif
+            @if ($prdImagen)
+                <img src="{{ $prdImagen->temporaryUrl() }}" alt="">
+                @else
+                    <img src="{{Storage::url($producto->prdImagen)}}" alt="">
+            @endif
         </x-slot>
 
         <x-slot name="footer">

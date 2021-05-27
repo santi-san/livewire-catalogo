@@ -36,8 +36,17 @@ class ShowProductos extends Component
         'producto.idCategoria' =>'required',
         'producto.prdPresentacion' =>'required',
         'producto.prdStock' =>'required',
+        'producto.prdImagen' =>'required',
+        
     ];
     
+    protected $messages = [
+        'prdNombre.required' => 'El producto no puede estar vacio.',
+        'prdNombre.min' => 'El producto debe tener al menos 2 caracteres.',
+        'prdNombre.max' => 'El producto no debe tener mas de 30 caracteres.',
+        'prdPrecio' => 'el precio',
+    ];
+
     # Cuando el escucha y el metodo llevan el mismo nombre se puede acortar. 
     protected $listeners = ['render'];
 
