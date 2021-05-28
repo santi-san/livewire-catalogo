@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Products;
 use App\Http\Livewire\ShowCategorias;
 use App\Http\Livewire\ShowMarcas;
 use App\Http\Livewire\ShowProductos;
@@ -20,11 +21,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+                return view('dashboard');
+        })->name('dashboard');
+
 Route::middleware(['auth:sanctum', 'verified'])
-        ->get('/dashboard', ShowMarcas::class)->name('dashboard');
+        ->get('/marcas', ShowMarcas::class)->name('marcas');        
 
 Route::middleware(['auth:sanctum', 'verified'])
         ->get('/categorias', ShowCategorias::class)->name('categorias');
 
 Route::middleware(['auth:sanctum', 'verified'])
         ->get('/productos', ShowProductos::class)->name('productos');
+
+
+/*------------------THE EASY WAY------------------ */
+Route::middleware(['auth:sanctum', 'verified'])
+        ->get('/products', Products::class)->name('products');

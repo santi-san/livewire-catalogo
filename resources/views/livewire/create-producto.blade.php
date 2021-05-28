@@ -131,5 +131,5 @@
                 } );
         </script>
     
-        @endpush
+    @endpush
 </div>

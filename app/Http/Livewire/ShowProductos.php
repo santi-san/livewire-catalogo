@@ -37,9 +37,49 @@ class ShowProductos extends Component
         'producto.prdPresentacion' =>'required',
         'producto.prdStock' =>'required',
     ];
-    
     # Cuando el escucha y el metodo llevan el mismo nombre se puede acortar. 
     protected $listeners = ['render'];
+
+
+    public function render()
+    {
+        if ($this->readyToLoad) {
+            $productos = Producto::where('prdNombre', 'like', '%' . $this->search .'%')
+            ->join('marcas', 'productos.idMarca', '=', 'marcas.idMarca')
+            ->join('categorias', 'productos.idCategoria', '=', 'categorias.idCategoria')
+            ->orderBy($this->sort, $this->direction)
+            ->paginate($this->cant);
+        }
+        else {
+            $productos = [];
+        }
+        return view('livewire.show-productos', compact('productos'));
+    }
+
+    public function store()
+    {
+        $this->validate();
+        $img = $this->prdImagen->store('productos', 'public');
+
+        Producto::create([
+            'prdNombre' => $this->prdNombre,
+            'prdPrecio' => $this->prdPrecio,
+            'idMarca' => $this->idMarca,
+            'idCategoria' => $this->idCategoria,
+            'prdPresentacion' => $this->prdPresentacion,
+            'prdStock' => $this->prdStock,
+            'prdImagen' => $img,
+        ]);
+
+        $this->reset();
+        # resetea el input file por medio de su id
+        $this->identificador = rand();
+
+        # emitTo limita el componente que escucha el evento render
+        $this->emitTo('show-productos','render');
+        
+        $this->emit('alert', 'El producto se creo satisfactoriamente');
+    }
 
     public function mount()
     {
@@ -50,22 +90,6 @@ class ShowProductos extends Component
     public function updatingSearch()
     {
         $this->resetPage();
-    }
-
-    public function render()
-    {
-
-        if ($this->readyToLoad) {
-            $productos = Producto::where('prdNombre', 'like', '%' . $this->search .'%')
-            ->join('marcas', 'productos.idMarca', '=', 'marcas.idMarca')
-            ->join('categorias', 'productos.idCategoria', '=', 'categorias.idCategoria')
-            ->orderBy($this->sort, $this->direction)
-            ->paginate($this->cant);
-        }
-        else{
-            $productos = [];
-        }
-        return view('livewire.show-productos', compact('productos'));
     }
 
     public function loadProductos(){
