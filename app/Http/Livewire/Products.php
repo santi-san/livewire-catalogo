@@ -7,17 +7,18 @@ use Livewire\Component;
 
 class Products extends Component
 {
+    public $product;
     public $prdNombre, $prdPrecio, $idMarca, $idCategoria, $prdPresentacion, $prdStock, $prdImagen;
     public $modalFormVisible = false;
     
     protected $rules = [
-        'prdNombre' => 'required|min:2|max:30',
-        'prdPrecio' => 'required|min:0',
-        'idMarca' => 'required',
-        'idCategoria' => 'required',
-        'prdPresentacion' => 'required',
-        'prdStock' => 'required',
-        'prdImagen' => 'required|image|max:2048',
+        'product.prdNombre' => 'required|min:2|max:30',
+        'product.prdPrecio' => 'required|min:0',
+        'product.idMarca' => 'required',
+        'product.idCategoria' => 'required',
+        'product.prdPresentacion' => 'required',
+        'product.prdStock' => 'required',
+        'product.prdImagen' => 'required|image|max:2048',
     ];
     protected $messages = [
         'prdNombre.required' => 'El producto no puede estar vacio.',
@@ -36,6 +37,22 @@ class Products extends Component
     public function createShowModal() {
         $this->modalFormVisible = true;
     }
+
+    public function mount()
+    {
+        $this->product = new Producto();
+    }
+
+    public function updateShowModal(Producto $product) {
+        $this->product = $product;
+        $this->modalFormVisible = true;
+        $this->loadModel();
+    }
+
+    public function loadModel(){
+        
+    }
+
 
     public function store()
     {

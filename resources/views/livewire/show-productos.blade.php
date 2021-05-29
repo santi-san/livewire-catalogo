@@ -216,7 +216,7 @@
     <x-jet-dialog-modal wire:model="open_edit">
 
         <x-slot name="title">
-            Editar el producto
+            Editar el producto {{$producto->prdNombre}}
         </x-slot>
 
         <x-slot name="content">

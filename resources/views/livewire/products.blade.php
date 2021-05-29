@@ -2,7 +2,7 @@
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Guardar Products') }}
+            {{ __('Products') }}
         </h2>
     </x-slot>
 
@@ -28,97 +28,97 @@
                     {{ __('Crear nuevo producto') }}
                 </x-jet-danger-button>
             </div>
-                @if ($products->count())
-                    <table class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-50">
-                            <tr class="whitespace-nowrap">
-                                <th scope="col"
-                                    class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                    wire:click="order('idProducto')">
-                                    ID
-                                </th>
-                                <th scope="col"
-                                    class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                    wire:click="order('prdNombre')">
-                                    Producto
-                                </th>
-                                <th scope="col"
-                                    class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                    wire:click="order('prdPrecio')">
-                                    Precio
-                                </th>
-                                <th scope="col"
-                                    class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                    wire:click="order('mkNombre')">
-                                    Marca
-                                </th>
-                                <th scope="col"
-                                    class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                    wire:click="order('catNombre')">
-                                    Categoria
-                                </th>
-                                <th scope="col"
-                                    class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                    wire:click="order('prdPresentacion')">
-                                    prdPresentacion
-                                </th>
-                                <th scope="col"
-                                    class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                    wire:click="order('prdStock')">
-                                    Stock
-                                </th>
-                                <th scope="col"
-                                    class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Imagen
-                                </th>
-                                <th scope="col" 
-                                    class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Opciones
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white divide-y divide-gray-200">
-                            @foreach ($products as $item)
-                            <tr class="whitespace-nowrap">
-                                <td class="px-2 py-4">
-                                    <div class="text-sm text-gray-900">a{{$item->idProducto}}</div>
-                                </td>
-                                <td class="px-2 py-4">
-                                    <div class="text-sm text-gray-900">{{$item->prdNombre}}</div>
-                                </td>
-                                <td class="px-2 py-4">
-                                    <div class="text-sm text-gray-900">{{$item->prdPrecio}}</div>
-                                </td>
-                                <td class="px-2 py-4">
-                                    <div class="text-sm text-gray-900">{{$item->mkNombre}}</div>
-                                </td>
-                                <td class="px-2 py-4">
-                                    <div class="text-sm text-gray-900">{{$item->catNombre}}</div>
-                                </td>
-                                <td class="px-2 py-4">
-                                    <div class="text-sm text-gray-900 truncate">{{$item->prdPresentacion}}</div>
-                                </td>
-                                <td class="px-2 py-4">
-                                    <div class="text-sm text-gray-900">{{$item->prdStock}}</div>
-                                </td>
-                                <td class="px-2 py-4">
-                                <img src="{{Storage::url($item->prdImagen)}}" alt="">
-                                </td>
-                                <td class="px-2 py-4 text-sm font-medium whitespace-nowrap">
-                                    <a class="btn btn-green mx-3" wire:click="edit({{$item}})">
-                                        <i class="fas fa-edit"></i>
-                                    </a> 
-                                    <a class="btn btn-red " wire:click="edit({{$item}})">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                @endif
-                
-            
+            @if ($products->count())
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr class="whitespace-nowrap">
+                            <th scope="col"
+                                class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                wire:click="order('idProducto')">
+                                ID
+                            </th>
+                            <th scope="col"
+                                class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                wire:click="order('prdNombre')">
+                                Producto
+                            </th>
+                            <th scope="col"
+                                class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                wire:click="order('prdPrecio')">
+                                Precio
+                            </th>
+                            <th scope="col"
+                                class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                wire:click="order('mkNombre')">
+                                Marca
+                            </th>
+                            <th scope="col"
+                                class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                wire:click="order('catNombre')">
+                                Categoria
+                            </th>
+                            <th scope="col"
+                                class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                wire:click="order('prdPresentacion')">
+                                prdPresentacion
+                            </th>
+                            <th scope="col"
+                                class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                wire:click="order('prdStock')">
+                                Stock
+                            </th>
+                            <th scope="col"
+                                class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Imagen
+                            </th>
+                            <th scope="col" 
+                                class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Opciones
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        @foreach ($products as $item)
+                        <tr class="whitespace-nowrap">
+                            <td class="px-2 py-4">
+                                <div class="text-sm text-gray-900">a{{$item->idProducto}}</div>
+                            </td>
+                            <td class="px-2 py-4">
+                                <div class="text-sm text-gray-900">{{$item->prdNombre}}</div>
+                            </td>
+                            <td class="px-2 py-4">
+                                <div class="text-sm text-gray-900">{{$item->prdPrecio}}</div>
+                            </td>
+                            <td class="px-2 py-4">
+                                <div class="text-sm text-gray-900">{{$item->mkNombre}}</div>
+                            </td>
+                            <td class="px-2 py-4">
+                                <div class="text-sm text-gray-900">{{$item->catNombre}}</div>
+                            </td>
+                            <td class="px-2 py-4">
+                                <div class="text-sm text-gray-900 truncate">{{$item->prdPresentacion}}</div>
+                            </td>
+                            <td class="px-2 py-4">
+                                <div class="text-sm text-gray-900">{{$item->prdStock}}</div>
+                            </td>
+                            <td class="px-2 py-4">
+                            <img src="{{Storage::url($item->prdImagen)}}" alt="">
+                            </td>
+                            <td class="px-2 py-4 text-sm font-medium whitespace-nowrap">
+                                <a class="btn btn-green mx-3" wire:click="updateShowModal({{$item}})">
+                                    {{ __('Update')}}
+                                    {{-- <i class="fas fa-edit"></i> --}}
+                                </a> 
+                                <a class="btn btn-red " wire:click="edit({{$item}})">
+                                    {{ __('Delete')}}
+                                    {{-- <i class="fas fa-edit"></i> --}}
+                                </a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            @endif
         </x-table>
     </div>
     
@@ -126,37 +126,37 @@
     <x-jet-dialog-modal wire:model="modalFormVisible">
 
         <x-slot name="title">
-           {{(' Editar el producto') }}
+           {{ __(' Editar el producto') }} {{$product->prdNombre}}
         </x-slot>
 
         <x-slot name="content">
             <div class="mb-4">
                 <x-jet-label for="prdNombre" value="{{__('Nombre del producto')}}"/>
-                <x-jet-input id="prdNombre" wire:model="prdNombre" type="text" class="w-full" />
+                <x-jet-input id="prdNombre" wire:model="product.prdNombre" type="text" class="w-full" />
                 <x-jet-input-error for="prdNombre"/>
             </div>
 
             <div class="mb-4">
                 <x-jet-label for="prdPrecio" value="Precio"/>
-                <x-jet-input id="prdPrecio" wire:model="prdPrecio" type="number" class="w-full" />
+                <x-jet-input id="prdPrecio" wire:model="product.prdPrecio" type="number" class="w-full" />
                 <x-jet-input-error for="prdPrecio"/>
             </div>
-
             <div class="mb-4" wire:ignore>
                 <x-jet-label for="prdPresentacion" value="Presentacion"/>
-                <textarea wire:model="prdPresentacion"
+                <textarea wire:model="product.prdPresentacion"
                     id="editor" class="form-control w-full" rows="6">
                 </textarea> 
+
                 <x-jet-input-error for="prdPresentacion"/>
             </div>
 
             <div class="mb-4">
                 <x-jet-label for="prdStock" value="Stock"/>
-                <x-jet-input wire:model="prdStock" type="number" class="w-full"/>
+                <x-jet-input wire:model="product.prdStock" type="number" class="w-full"/>
                 <x-jet-input-error for="prdStock"/>
             </div>
             <div class="mb-4">
-                 <input type="file" wire:model="prdImagen" id="">
+                 <input type="file" wire:model="product.prdImagen" id="">
                 {{--{{$identificador}} --}}
                 {{-- Validation --}}
                 <x-jet-input-error for="prdImagen"/>
@@ -201,7 +201,7 @@
                 .then(function(editor){
                     editor.model.document.on('change:data', () => {
                     
-                        @this.set('prdPresentacion', editor.getData());
+                        @this.set('product.prdPresentacion', editor.getData());
                     })
                 })
                 .catch( error => {
