@@ -59,7 +59,10 @@ class Products extends Component
 
     public function render()
     {
-        return view('livewire.products', compact('productos'));
+        $products = Producto::join('marcas', 'productos.idMarca', '=', 'marcas.idMarca')
+            ->join('categorias', 'productos.idCategoria', '=', 'categorias.idCategoria')
+            ->get();
+        return view('livewire.products', compact('products'));
     }
 
 

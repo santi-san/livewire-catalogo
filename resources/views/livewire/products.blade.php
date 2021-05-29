@@ -10,7 +10,6 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-2 lg:px-8 py-12">
         <x-table>
             <div class="px-2 py-4 flex items-center">
-
                 {{-- Filter quantity --}}
                 <div class="flex items-center">
                     <span>Mostrar</span>
@@ -28,7 +27,8 @@
                 <x-jet-danger-button wire:click="createShowModal">
                     {{ __('Crear nuevo producto') }}
                 </x-jet-danger-button>
-                @if ()
+            </div>
+                @if ($products->count())
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr class="whitespace-nowrap">
@@ -78,10 +78,10 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            @foreach ($productos as $item)
+                            @foreach ($products as $item)
                             <tr class="whitespace-nowrap">
                                 <td class="px-2 py-4">
-                                    <div class="text-sm text-gray-900">{{$item->idProducto}}</div>
+                                    <div class="text-sm text-gray-900">a{{$item->idProducto}}</div>
                                 </td>
                                 <td class="px-2 py-4">
                                     <div class="text-sm text-gray-900">{{$item->prdNombre}}</div>
@@ -118,7 +118,7 @@
                     </table>
                 @endif
                 
-            </div>
+            
         </x-table>
     </div>
     
