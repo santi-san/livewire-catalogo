@@ -19,8 +19,9 @@ class Products extends Component
     public $product;
     public $modelId;
 
-    public $prdNombre, $prdPrecio, $idMarca, $idCategoria, $prdPresentacion, $prdStock;
+    public $prdNombre, $prdPrecio, $idMarca, $idCategoria, $prdStock;
     public $prdImagen;
+    public $prdPresentacion = '';
     public $identificador;
     public $modalFormVisible = false;
     
@@ -49,10 +50,9 @@ class Products extends Component
 
     public function createShowModal() {
         $this->reset(['prdImagen']);
-
         $this->resetValidation();
         $this->reset();
-        $this->reset(['prdPresentacion']);
+        
         $this->modalFormVisible = true;
     }
 
@@ -73,6 +73,7 @@ class Products extends Component
     }
 
     public function loadModel(){
+
         $data = Producto::find($this->modelId);
         $this->prdNombre = $data->prdNombre;
         $this->prdPrecio = $data->prdPrecio;

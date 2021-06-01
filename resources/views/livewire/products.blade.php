@@ -170,7 +170,7 @@
                         wire:model="prdPresentacion"
                         class="form-control w-full"
                         rows="6">
-                        {{!! 'prdPresentacion'  !!}}
+                        {{!! 'prdPresentacion' !!}}
                 </textarea> 
                 <x-jet-input-error for="prdPresentacion"/>
                 </div>
@@ -200,12 +200,12 @@
                     </div>
                 </div>
             </div>
-
-                @if ($prdImagen )
-                    <img src="{{ $prdImagen->temporaryUrl() }}" alt="">
-                @else
-                    <img src="{{Storage::url($prdImagen)}}" alt="">
-                @endif
+    {{-- 
+                    @if ($prdImagen )
+                        <img src="{{$prdImagen->temporaryUrl()}}" alt="">
+                    @else
+                        <img src="{{Storage::url($prdImagen)}}" alt="">
+                    @endif --}}
 
 
 
