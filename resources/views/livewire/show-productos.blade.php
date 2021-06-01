@@ -230,9 +230,17 @@
                 <x-jet-input wire:model="producto.prdPrecio" type="number" class="w-full" />
             </div>
 
-            <div class="mb-4">
-                <x-jet-label value="Presentacion del producto" />
-                <textarea wire:model="producto.prdPresentacion" rows="6" class="form-control w-full"></textarea>
+            <div class="mb-4" wire:ignore>
+                <x-jet-label value="Presentacion"/>
+                <textarea 
+                    wire:model="producto.prdPresentacion"
+                    id="editor2" 
+                    class="form-control w-full" 
+                    rows="6">
+                </textarea> 
+
+                {{-- Validation --}}
+                <x-jet-input-error for="producto.prdPresentacion"/>
             </div>
 
             <div class="mb-4">
@@ -276,6 +284,23 @@
         </x-slot>
 
    </x-jet-dialog-modal>
+   @push('js')
+   <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
 
+   <script>
+       ClassicEditor
+           .create( document.querySelector( '#editor2' ) )
+           .then(function(editor){
+               editor.model.document.on('change:data', () => {
+               
+                   @this.set('producto.prdPresentacion', editor.getData());
+               })
+           })
+           .catch( error => {
+               console.error( error );
+           } );
+   </script>
+
+   @endpush
    
 </div>
