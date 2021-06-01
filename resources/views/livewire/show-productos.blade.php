@@ -185,12 +185,12 @@
                             <td class="px-2 py-4">
                                <img src="{{Storage::url($item->prdImagen)}}" alt="">
                             </td>
-                            <td class="px-2 py-4 text-sm font-medium whitespace-nowrap">
+                            <td class="px-2 py-4 text-sm font-medium whitespace-nowrap flex">
                                 <a class="btn btn-green mx-3" wire:click="edit({{$item}})">
                                     <i class="fas fa-edit"></i>
                                 </a> 
-                                <a class="btn btn-red " wire:click="edit({{$item}})">
-                                    <i class="fas fa-edit"></i>
+                                <a class="btn btn-red ml-2 " wire:click="$emit('deleteProduct', {{$item->idProducto}})">
+                                    <i class="fas fa-trash"></i>
                                 </a>
                             </td>
                         </tr>
@@ -285,6 +285,34 @@
 
    </x-jet-dialog-modal>
    @push('js')
+
+   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        Livewire.on('deleteProduct', productId => {
+            Swal.fire({
+                title: 'Estas seguro de borrar este producto?',
+                text: "No se puede revertir este cambio!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, borrar producto!',
+                cancelButtonText: 'No, volver atras!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    Livewire.emitTo('show-productos', 'destroy', productId )
+
+                    Swal.fire(
+                        'Deleted!',
+                        'El producto fue borrado',
+                        'success'
+                    )
+                }
+            })
+        });
+    </script>
+
    <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
 
    <script>

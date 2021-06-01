@@ -48,7 +48,7 @@ class ShowProductos extends Component
     ];
 
     # Cuando el escucha y el metodo llevan el mismo nombre se puede acortar. 
-    protected $listeners = ['render'];
+    protected $listeners = ['render', 'destroy'];
 
     public function mount()
     {
@@ -120,5 +120,10 @@ class ShowProductos extends Component
         $this->identificador = rand();
 
         $this->emit('alert', 'El producto se actualizo satisfactoriamente');
+    }
+
+
+    public function destroy(Producto $producto){
+        $producto->delete();
     }
 }
