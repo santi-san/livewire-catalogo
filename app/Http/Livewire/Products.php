@@ -2,23 +2,36 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Categoria;
+use App\Models\Marca;
 use App\Models\Producto;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
+use Livewire\WithFileUploads;
+use Livewire\WithPagination;
 
 class Products extends Component
 {
+
+    use WithFileUploads;
+    use WithPagination;
+
     public $product;
-    public $prdNombre, $prdPrecio, $idMarca, $idCategoria, $prdPresentacion, $prdStock, $prdImagen;
+    public $modelId;
+
+    public $prdNombre, $prdPrecio, $idMarca, $idCategoria, $prdPresentacion, $prdStock;
+    public $prdImagen;
+    public $identificador;
     public $modalFormVisible = false;
     
     protected $rules = [
-        'product.prdNombre' => 'required|min:2|max:30',
-        'product.prdPrecio' => 'required|min:0',
-        'product.idMarca' => 'required',
-        'product.idCategoria' => 'required',
-        'product.prdPresentacion' => 'required',
-        'product.prdStock' => 'required',
-        'product.prdImagen' => 'required|image|max:2048',
+        'prdNombre' => 'required|min:2|max:30',
+        'prdPrecio' => 'required|min:0',
+        'idMarca' => 'required',
+        'idCategoria' => 'required',
+        'prdPresentacion' => 'required',
+        'prdStock' => 'required',
+        'prdImagen' => 'required|image|max:2048',
     ];
     protected $messages = [
         'prdNombre.required' => 'El producto no puede estar vacio.',
@@ -35,24 +48,67 @@ class Products extends Component
     ];
 
     public function createShowModal() {
+        $this->reset(['prdImagen']);
+
+        $this->resetValidation();
+        $this->reset();
+        $this->reset(['prdPresentacion']);
         $this->modalFormVisible = true;
     }
+
 
     public function mount()
     {
         $this->product = new Producto();
+        $this->identificador = rand();
     }
 
-    public function updateShowModal(Producto $product) {
-        $this->product = $product;
-        $this->modalFormVisible = true;
+    public function updateShowModal($id) {
+        $this->resetValidation();
+        $this->modelId = $id;
         $this->loadModel();
+        $this->modalFormVisible = true;
+
+       
     }
 
     public function loadModel(){
-        
+        $data = Producto::find($this->modelId);
+        $this->prdNombre = $data->prdNombre;
+        $this->prdPrecio = $data->prdPrecio;
+        $this->idMarca = $data->idMarca;
+        $this->idCategoria = $data->idCategoria;
+        $this->prdPresentacion = $data->prdPresentacion;
+        $this->prdStock = $data->prdStock;
+        $this->prdImagen = $data->prdImagen;
     }
 
+    public function update()
+    {
+        $this->validate();
+        if($this->prdImagen) {
+            Storage::delete([$this->product->prdImagen]);
+
+            $this->product->prdImagen = $this->prdImagen->store('productos', 'public');
+        }
+        $this->updateModel();
+        $this->product->save();
+        $this->reset();
+        $this->identificador = rand();
+        $this->reset(['prdImagen']);
+
+    }
+
+    public function updateModel()
+    {
+        $this->product->prdNombre = $this->prdNombre;
+        $this->product->prdPrecio = $this->prdPrecio;
+        $this->product->idMarca = $this->idMarca;
+        $this->product->idCategoria = $this->idCategoria;
+        $this->product->prdPresentacion = $this->prdPresentacion;
+        $this->product->prdStock = $this->prdStock;
+        $this->product->prdImagen = $this->prdImagen;
+    }
 
     public function store()
     {
@@ -69,17 +125,18 @@ class Products extends Component
             'prdImagen' => $img,
         ]);
         $this->reset();
-        
+        $this->identificador = rand();
         $this->modalFormVisible = false;
     }
 
 
     public function render()
     {
-        $products = Producto::join('marcas', 'productos.idMarca', '=', 'marcas.idMarca')
-            ->join('categorias', 'productos.idCategoria', '=', 'categorias.idCategoria')
+        $marcas = Marca::all();
+        $categorias = Categoria::all();
+        $products = Producto::with('relMarca', 'relCategoria')
             ->get();
-        return view('livewire.products', compact('products'));
+        return view('livewire.products', compact('products','marcas','categorias'));
     }
 
 

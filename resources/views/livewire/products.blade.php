@@ -1,5 +1,4 @@
 <div>
-
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Products') }}
@@ -28,6 +27,7 @@
                     {{ __('Crear nuevo producto') }}
                 </x-jet-danger-button>
             </div>
+            {{-- Table --}}
             @if ($products->count())
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
@@ -60,7 +60,7 @@
                             <th scope="col"
                                 class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                 wire:click="order('prdPresentacion')">
-                                prdPresentacion
+                                Presentacion
                             </th>
                             <th scope="col"
                                 class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -79,9 +79,9 @@
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
                         @foreach ($products as $item)
-                        <tr class="whitespace-nowrap">
+                        <tr class="">
                             <td class="px-2 py-4">
-                                <div class="text-sm text-gray-900">a{{$item->idProducto}}</div>
+                                <div class="text-sm text-gray-900">{{$item->idProducto}}</div>
                             </td>
                             <td class="px-2 py-4">
                                 <div class="text-sm text-gray-900">{{$item->prdNombre}}</div>
@@ -90,22 +90,23 @@
                                 <div class="text-sm text-gray-900">{{$item->prdPrecio}}</div>
                             </td>
                             <td class="px-2 py-4">
-                                <div class="text-sm text-gray-900">{{$item->mkNombre}}</div>
+                                <div class="text-sm text-gray-900">{{$item->relMarca->mkNombre}}</div>
                             </td>
                             <td class="px-2 py-4">
-                                <div class="text-sm text-gray-900">{{$item->catNombre}}</div>
+                                <div class="text-sm text-gray-900">{{$item->relCategoria->catNombre}}</div>
                             </td>
                             <td class="px-2 py-4">
-                                <div class="text-sm text-gray-900 truncate">{{$item->prdPresentacion}}</div>
+                                <div class="text-sm text-gray-900 truncate">
+                                    {{ $item->prdPresentacion }}</div>
                             </td>
                             <td class="px-2 py-4">
                                 <div class="text-sm text-gray-900">{{$item->prdStock}}</div>
                             </td>
                             <td class="px-2 py-4">
-                            <img src="{{Storage::url($item->prdImagen)}}" alt="">
+                                <img src="{{Storage::url($item->prdImagen)}}" alt="">
                             </td>
                             <td class="px-2 py-4 text-sm font-medium whitespace-nowrap">
-                                <a class="btn btn-green mx-3" wire:click="updateShowModal({{$item}})">
+                                <a class="btn btn-green mx-3" wire:click="updateShowModal({{$item->idProducto}})">
                                     {{ __('Update')}}
                                     {{-- <i class="fas fa-edit"></i> --}}
                                 </a> 
@@ -121,43 +122,67 @@
             @endif
         </x-table>
     </div>
-    
+   
     {{-- Modal form --}}
     <x-jet-dialog-modal wire:model="modalFormVisible">
-
         <x-slot name="title">
-           {{ __(' Editar el producto') }} {{$product->prdNombre}}
+            @if ($product)
+                {{ __(' Editar el producto') }} 
+            @else
+                {{ __(' Guardar un producto') }} 
+            @endif
         </x-slot>
 
         <x-slot name="content">
             <div class="mb-4">
                 <x-jet-label for="prdNombre" value="{{__('Nombre del producto')}}"/>
-                <x-jet-input id="prdNombre" wire:model="product.prdNombre" type="text" class="w-full" />
+                <x-jet-input id="prdNombre" wire:model="prdNombre" type="text" class="w-full" />
                 <x-jet-input-error for="prdNombre"/>
             </div>
-
             <div class="mb-4">
                 <x-jet-label for="prdPrecio" value="Precio"/>
-                <x-jet-input id="prdPrecio" wire:model="product.prdPrecio" type="number" class="w-full" />
+                <x-jet-input id="prdPrecio" wire:model="prdPrecio" type="number" class="w-full" />
                 <x-jet-input-error for="prdPrecio"/>
             </div>
-            <div class="mb-4" wire:ignore>
-                <x-jet-label for="prdPresentacion" value="Presentacion"/>
-                <textarea wire:model="product.prdPresentacion"
-                    id="editor" class="form-control w-full" rows="6">
-                </textarea> 
+            <div class="mb-4">
 
-                <x-jet-input-error for="prdPresentacion"/>
+                <select name="idMarca" class="form-control" wire:model="idMarca">
+                    <option value="">Seleccione una marca</option>
+                    @foreach ($marcas as $marca)
+                            <option value="{{$marca->idMarca}}"> {{$marca->mkNombre}}</option>
+                    @endforeach 
+                </select>
+                {{-- Validation --}}
+                <x-jet-input-error for="idMarca"/>
+
+                 <select name="idCategoria" class="form-control" wire:model="idCategoria">
+                    <option value="">Seleccione una categoria</option>
+                    @foreach ($categorias as $categoria)
+                        <option value="{{$categoria->idCategoria}}">{{ $categoria->catNombre }}</option>
+                    @endforeach
+                </select>
+                {{-- Validation --}}
+                <x-jet-input-error for="idCategoria"/>
             </div>
-
+            <div class="mb-4" wire:ignore>
+                <x-jet-label value="Presentacion"/>
+                <textarea id="editor"
+                        wire:model="prdPresentacion"
+                        class="form-control w-full"
+                        rows="6">
+                        {{!! 'prdPresentacion'  !!}}
+                </textarea> 
+                <x-jet-input-error for="prdPresentacion"/>
+                </div>
             <div class="mb-4">
                 <x-jet-label for="prdStock" value="Stock"/>
-                <x-jet-input wire:model="product.prdStock" type="number" class="w-full"/>
+                <x-jet-input wire:model="prdStock" type="number" class="w-full"/>
                 <x-jet-input-error for="prdStock"/>
             </div>
+
+
             <div class="mb-4">
-                 <input type="file" wire:model="product.prdImagen" id="">
-                {{--{{$identificador}} --}}
+                <input type="file" wire:model="prdImagen" id="{{$identificador}}">
                 {{-- Validation --}}
                 <x-jet-input-error for="prdImagen"/>
             </div>
@@ -176,7 +201,18 @@
                 </div>
             </div>
 
-   
+                @if ($prdImagen )
+                    <img src="{{ $prdImagen->temporaryUrl() }}" alt="">
+                @else
+                    <img src="{{Storage::url($prdImagen)}}" alt="">
+                @endif
+
+
+
+
+
+
+
         </x-slot>
 
         <x-slot name="footer">
@@ -184,9 +220,16 @@
                 {{ __('Cancelar')}}
             </x-jet-secondary-button>
 
-            <x-jet-button wire:click="store" wire:loading.attr="disabled" class="disabled:opacity-25">
-                {{ __('Guardar')}}
-            </x-jets-button>
+
+            @if ($product)
+                <x-jet-button wire:click="update" wire:loading.attr="disabled" class="disabled:opacity-25">
+                    {{ __('Actualizar')}}
+                </x-jets-button>
+            @else
+                <x-jet-button wire:click="store" wire:loading.attr="disabled" wire:target="store, prdImagen" class="disabled:opacity-25">
+                    {{ __('Crear')}}
+                </x-jets-button>
+            @endif
         </x-slot>
 
    </x-jet-dialog-modal>
@@ -194,20 +237,21 @@
 
    @push('js')
         <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
-    
+
         <script>
+            
             ClassicEditor
                 .create( document.querySelector( '#editor' ) )
                 .then(function(editor){
                     editor.model.document.on('change:data', () => {
-                    
-                        @this.set('product.prdPresentacion', editor.getData());
+                        @this.set('prdPresentacion', editor.getData());
                     })
                 })
                 .catch( error => {
                     console.error( error );
                 } );
-        </script>
-    
+            
+         </script>
+
     @endpush
 </div>
