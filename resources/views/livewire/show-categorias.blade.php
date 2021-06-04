@@ -14,17 +14,17 @@
                 {{-- create modal --}}
                 @livewire('create-categoria')
             </div>
-            @if ($categorias->count())
+            @if ($categories->count())
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
                             <th scope="col"
                                 class="w-24 cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                wire:click="order('idCategoria')">
+                                wire:click="order('id')">
                                 ID
 
                                 {{-- Sort --}}
-                                @if ($sort == 'idCategoria')
+                                @if ($sort == 'id')
                                     @if ($direction == 'asc')
                                         <i class="fas fa-sort-alpha-up-alt float-right"></i>
                                     @else
@@ -36,11 +36,11 @@
                             </th>
                             <th scope="col"
                                 class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                wire:click="order('catNombre')">
+                                wire:click="order('name')">
                                 Categoria
 
                                 {{-- Sort --}}
-                                @if ($sort == 'catNombre')
+                                @if ($sort == 'name')
                                     @if ($direction == 'asc')
                                         <i class="fas fa-sort-alpha-up-alt float-right"></i>
                                     @else
@@ -58,13 +58,13 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach ($categorias as $categoria)
+                        @foreach ($categories as $category)
                         <tr>
                             <td class="px-6 py-4">
-                                <div class="text-sm text-gray-900">{{$categoria->idCategoria}}</div>
+                                <div class="text-sm text-gray-900">{{$category->id}}</div>
                             </td>
                             <td class="px-6 py-4">
-                                <div class="text-sm text-gray-900">{{$categoria->catNombre}}</div>
+                                <div class="text-sm text-gray-900">{{$category->name}}</div>
                             </td>
                             <td class="px-6 py-4 text-right text-sm font-medium">
                                 <div class="text-sm text-gray-900">editar</div>

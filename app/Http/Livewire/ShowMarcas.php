@@ -2,14 +2,14 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Marca;
+use App\Models\Brand;
 use Livewire\Component;
 
 class ShowMarcas extends Component
 {
 
     public $search = '';
-    public $sort = 'idMarca';
+    public $sort = 'id';
     public $direction = 'desc';
     # Escucha 'render' de CreateMarca y ejecuta el metodo render() de ShowMarcas
     # protected $listeners = ['render' => 'render']; 
@@ -18,10 +18,10 @@ class ShowMarcas extends Component
 
     public function render()
     {
-        $marcas = Marca::where('mkNombre', 'like', '%' . $this->search .'%')
+        $brands = Brand::where('name', 'like', '%' . $this->search .'%')
                         ->orderBy($this->sort, $this->direction)
                         ->get();
-        return view('livewire.show-marcas', compact('marcas'));
+        return view('livewire.show-marcas', compact('brands'));
     }
 
     public function order($sort)

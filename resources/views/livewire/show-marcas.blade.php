@@ -14,7 +14,7 @@
                 {{-- create modal --}}
                 @livewire('create-marca')
             </div>
-            @if ($marcas->count())
+            @if ($brands->count())
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
@@ -58,13 +58,13 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach ($marcas as $marca)
+                        @foreach ($brands as $brand)
                         <tr>
                             <td class="px-6 py-4">
-                                <div class="text-sm text-gray-900">{{$marca->idMarca}}</div>
+                                <div class="text-sm text-gray-900">{{$brand->id}}</div>
                             </td>
                             <td class="px-6 py-4">
-                                <div class="text-sm text-gray-900">{{$marca->mkNombre}}</div>
+                                <div class="text-sm text-gray-900">{{$brand->mkNombre}}</div>
                             </td>
                             <td class="px-6 py-4 text-right text-sm font-medium">
                                 <div class="text-sm text-gray-900">editar</div>

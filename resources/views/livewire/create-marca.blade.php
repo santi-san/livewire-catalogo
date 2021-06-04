@@ -14,12 +14,18 @@
 
             <div class="mb-4">
                 <x-jet-label value="Nombre de la marca"/>
-                <x-jet-input type="text" class="w-full" wire:model="mkNombre"/>
+                <x-jet-input type="text" class="w-full" wire:model="name"/>
 
                 {{-- Validation --}}
-                <x-jet-input-error for="mkNombre"/>
+                <x-jet-input-error for="name"/>
             </div>
+            <div class="mb-4">
+                <x-jet-label value="Sitio web de la marca"/>
+                <x-jet-input type="text" class="w-full" wire:model="website"/>
 
+                {{-- Validation --}}
+                <x-jet-input-error for="website"/>
+            </div>
         </x-slot>
 
         {{-- Modal --}}

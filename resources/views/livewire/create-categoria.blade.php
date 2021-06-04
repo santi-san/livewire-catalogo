@@ -14,10 +14,10 @@
 
             <div class="mb-4">
                 <x-jet-label value="Nombre de la categoria"/>
-                <x-jet-input type="text" class="w-full" wire:model="catNombre"/>
+                <x-jet-input type="text" class="w-full" wire:model="name"/>
 
                 {{-- Validation --}}
-                <x-jet-input-error for="catNombre"/>
+                <x-jet-input-error for="name"/>
             </div>
 
         </x-slot>

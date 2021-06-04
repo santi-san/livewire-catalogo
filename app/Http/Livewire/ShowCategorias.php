@@ -2,14 +2,14 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Categoria;
+use App\Models\Category;
 use Livewire\Component;
 
 class ShowCategorias extends Component
 {
     
     public $search = '';
-    public $sort = 'idCategoria';
+    public $sort = 'id';
     public $direction = 'desc';
     # Escucha 'render' de CreateMarca y ejecuta el metodo render() de ShowMarcas
     # protected $listeners = ['render' => 'render']; 
@@ -19,10 +19,10 @@ class ShowCategorias extends Component
     
     public function render()
     {
-        $categorias = Categoria::where('catNombre', 'like', '%' . $this->search .'%')
+        $categories = Category::where('name', 'like', '%' . $this->search .'%')
                         ->orderBy($this->sort, $this->direction)
                         ->get();
-        return view('livewire.show-categorias', compact('categorias'));
+        return view('livewire.show-categorias', compact('categories'));
     }
 
     public function order($sort)

@@ -2,22 +2,25 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Brand;
 use App\Models\Marca;
 use Livewire\Component;
 
 class CreateMarca extends Component
 {
-    public $mkNombre;
+    public $name;
+    public $website;
     public $open = false;
 
     protected $rules = [
-        'mkNombre' => 'required|min:2|max:30',
+        'name' => 'required|min:2|max:255',
+        'website' => 'min:8'|'max:100',
     ];
 
     protected $messages = [
-        'mkNombre.required' => 'La marca no puede estar vacia.',
-        'mkNombre.min' => 'La marca debe tener al menos 2 caracteres.',
-        'mkNombre.max' => 'La marca no debe tener mas de 30 caracteres.'
+        'name.required' => 'La marca no puede estar vacia.',
+        'name.min' => 'La marca debe tener al menos 2 caracteres.',
+        'name.max' => 'La marca no debe tener mas de 30 caracteres.'
     ];
 
     public function updated($propertyName)
@@ -30,8 +33,9 @@ class CreateMarca extends Component
 
         $this->validate();
 
-        Marca::create([
-            'mkNombre' => $this->mkNombre
+        Brand::create([
+            'name' => $this->name,
+            'website' => $this->website
         ]);
 
         $this->reset();

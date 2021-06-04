@@ -3,21 +3,22 @@
 namespace App\Http\Livewire;
 
 use App\Models\Categoria;
+use App\Models\Category;
 use Livewire\Component;
 
 class CreateCategoria extends Component
 {
-    public $catNombre;
+    public $name;
     public $open = false;
 
     protected $rules = [
-        'catNombre' => 'required|min:2|max:30',
+        'name' => 'required|min:2|max:255',
     ];
 
     protected $messages = [
-        'catNombre.required' => 'La categoria no puede estar vacia.',
-        'catNombre.min' => 'La categoria debe tener al menos 2 caracteres.',
-        'catNombre.max' => 'La categoria no debe tener mas de 30 caracteres.'
+        'name.required' => 'La categoria no puede estar vacia.',
+        'name.min' => 'La categoria debe tener al menos 2 caracteres.',
+        'name.max' => 'La categoria no debe tener mas de 255 caracteres.'
     ];
 
     public function updated($propertyName)
@@ -30,8 +31,8 @@ class CreateCategoria extends Component
 
         $this->validate();
 
-        Categoria::create([
-            'catNombre' => $this->catNombre
+        Category::create([
+            'name' => $this->name
         ]);
 
         $this->reset();
