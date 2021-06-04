@@ -26,17 +26,18 @@
                 {{-- create modal --}}
                 @livewire('create-producto')
             </div>
-            @if (count($productos))
+            {{-- List products --}}
+            @if (count($products))
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr class="whitespace-nowrap">
                             <th scope="col"
                                 class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                wire:click="order('idProducto')">
+                                wire:click="order('id')">
                                 ID
 
                                 {{-- Sort --}}
-                                @if ($sort == 'idProducto')
+                                @if ($sort == 'id')
                                     @if ($direction == 'asc')
                                         <i class="fas fa-sort-alpha-up-alt ml-2"></i>
                                     @else
@@ -48,11 +49,11 @@
                             </th>
                             <th scope="col"
                                 class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                wire:click="order('prdNombre')">
+                                wire:click="order('name')">
                                 Producto
 
                                 {{-- Sort --}}
-                                @if ($sort == 'prdNombre')
+                                @if ($sort == 'name')
                                     @if ($direction == 'asc')
                                         <i class="fas fa-sort-alpha-up-alt ml-2"></i>
                                     @else
@@ -65,11 +66,11 @@
                             </th>
                             <th scope="col"
                                 class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                wire:click="order('prdPrecio')">
+                                wire:click="order('price')">
                                 Precio
 
                                 {{-- Sort --}}
-                                @if ($sort == 'prdPrecio')
+                                @if ($sort == 'price')
                                     @if ($direction == 'asc')
                                         <i class="fas fa-sort-alpha-up-alt ml-2"></i>
                                     @else
@@ -82,11 +83,11 @@
                             </th>
                             <th scope="col"
                                 class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                wire:click="order('mkNombre')">
+                                wire:click="order('name')">
                                 Marca
 
-                                {{-- Sort --}}
-                                @if ($sort == 'mkNombre')
+                                {{-- check later Sort --}}
+                                @if ($sort == 'name')
                                     @if ($direction == 'asc')
                                         <i class="fas fa-sort-alpha-up-alt ml-2"></i>
                                     @else
@@ -99,11 +100,11 @@
                             </th>
                             <th scope="col"
                                 class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                wire:click="order('catNombre')">
+                                wire:click="order('name')">
                                 Categoria
 
-                                {{-- Sort --}}
-                                @if ($sort == 'catNombre')
+                                {{-- check later Sort --}}
+                                @if ($sort == 'name')
                                     @if ($direction == 'asc')
                                         <i class="fas fa-sort-alpha-up-alt ml-2"></i>
                                     @else
@@ -116,11 +117,11 @@
                             </th>
                             <th scope="col"
                                 class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                wire:click="order('prdPresentacion')">
-                                Presentacion
+                                wire:click="order('description')">
+                                Descripcion
 
                                 {{-- Sort --}}
-                                @if ($sort == 'prdPresentacion')
+                                @if ($sort == 'description')
                                     @if ($direction == 'asc')
                                         <i class="fas fa-sort-alpha-up-alt ml-2"></i>
                                     @else
@@ -133,11 +134,11 @@
                             </th>
                             <th scope="col"
                                 class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                wire:click="order('prdStock')">
+                                wire:click="order('stock')">
                                 Stock
 
                                 {{-- Sort --}}
-                                @if ($sort == 'prdStock')
+                                @if ($sort == 'stock')
                                     @if ($direction == 'asc')
                                         <i class="fas fa-sort-alpha-up-alt ml-2"></i>
                                     @else
@@ -159,37 +160,37 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach ($productos as $item)
+                        @foreach ($products as $item)
                         <tr class="whitespace-nowrap">
                             <td class="px-2 py-4">
-                                <div class="text-sm text-gray-900">{{$item->idProducto}}</div>
+                                <div class="text-sm text-gray-900">{{$item->id}}</div>
                             </td>
                             <td class="px-2 py-4">
-                                <div class="text-sm text-gray-900">{{$item->prdNombre}}</div>
+                                <div class="text-sm text-gray-900">{{$item->name}}</div>
                             </td>
                             <td class="px-2 py-4">
-                                <div class="text-sm text-gray-900">{{$item->prdPrecio}}</div>
+                                <div class="text-sm text-gray-900">{{$item->price}}</div>
                             </td>
                             <td class="px-2 py-4">
-                                <div class="text-sm text-gray-900">{{$item->mkNombre}}</div>
+                                <div class="text-sm text-gray-900">{{$item->relBrand->name}}</div>
                             </td>
                             <td class="px-2 py-4">
-                                <div class="text-sm text-gray-900">{{$item->catNombre}}</div>
+                                <div class="text-sm text-gray-900">{{$item->relCategory->name}}</div>
                             </td>
                             <td class="px-2 py-4">
-                                <div class="text-sm text-gray-900 truncate">{{$item->prdPresentacion}}</div>
+                                <div class="text-sm text-gray-900 truncate">{{$item->description}}</div>
                             </td>
                             <td class="px-2 py-4">
-                                <div class="text-sm text-gray-900">{{$item->prdStock}}</div>
+                                <div class="text-sm text-gray-900">{{$item->stock}}</div>
                             </td>
                             <td class="px-2 py-4">
-                               <img src="{{Storage::url($item->prdImagen)}}" alt="">
+                               <img src="{{Storage::url($item->image)}}" alt="">
                             </td>
                             <td class="px-2 py-4 text-sm font-medium whitespace-nowrap flex">
                                 <a class="btn btn-green mx-3" wire:click="edit({{$item}})">
                                     <i class="fas fa-edit"></i>
                                 </a> 
-                                <a class="btn btn-red ml-2 " wire:click="$emit('deleteProduct', {{$item->idProducto}})">
+                                <a class="btn btn-red ml-2 " wire:click="$emit('deleteProduct', {{$item->id}})">
                                     <i class="fas fa-trash"></i>
                                 </a>
                             </td>
@@ -197,9 +198,9 @@
                         @endforeach
                     </tbody>
                 </table>
-                @if ($productos->hasPages())
+                @if ($products->hasPages())
                     <div class="px-2 py-3">
-                        {{$productos->links()}}
+                        {{$products->links()}}
                     </div>
                 @endif
             @else
@@ -222,38 +223,38 @@
         <x-slot name="content">
             <div class="mb-4">
                 <x-jet-label value="Titulo del producto"/>
-                <x-jet-input wire:model="producto.prdNombre" type="text" class="w-full" />
+                <x-jet-input wire:model="product.name" type="text" class="w-full" />
             </div>
 
             <div class="mb-4">
                 <x-jet-label value="Precio"/>
-                <x-jet-input wire:model="producto.prdPrecio" type="number" class="w-full" />
+                <x-jet-input wire:model="product.price" type="number" class="w-full" />
             </div>
 
             <div class="mb-4" wire:ignore>
                 <x-jet-label value="Presentacion"/>
                 <textarea 
-                    wire:model="producto.prdPresentacion"
+                    wire:model="product.description"
                     id="editor2" 
                     class="form-control w-full" 
                     rows="6">
                 </textarea> 
 
                 {{-- Validation --}}
-                <x-jet-input-error for="producto.prdPresentacion"/>
+                <x-jet-input-error for="product.description"/>
             </div>
 
             <div class="mb-4">
                 <x-jet-label value="Stock"/>
-                <x-jet-input wire:model="producto.prdStock" type="number" class="w-full"/>
+                <x-jet-input wire:model="product.prdStock" type="number" class="w-full"/>
             </div>
             <div class="mb-4">
-                <input type="file" wire:model="prdImagen" id="{{$identificador}}">
+                <input type="file" wire:model="image" id="{{$identificador}}">
                 {{-- Validation --}}
-                <x-jet-input-error for="prdImagen"/>
+                <x-jet-input-error for="image"/>
             </div>
 
-            <div wire:loading wire:target="prdImagen" class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
+            <div wire:loading wire:target="image" class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
                 <div class="flex">
                     <div class="py-1">
                         <svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -267,10 +268,10 @@
                 </div>
             </div>
 
-            @if ($prdImagen)
-                <img src="{{ $prdImagen->temporaryUrl() }}" alt="">
+            @if ($image)
+                <img src="{{ $image->temporaryUrl() }}" alt="">
                 @else
-                    <img src="{{Storage::url($producto->prdImagen)}}" alt="">
+                    <img src="{{Storage::url($product->image)}}" alt="">
             @endif
         </x-slot>
 
@@ -321,7 +322,7 @@
            .then(function(editor){
                editor.model.document.on('change:data', () => {
                
-                   @this.set('producto.prdPresentacion', editor.getData());
+                   @this.set('product.prdPresentacion', editor.getData());
                })
            })
            .catch( error => {

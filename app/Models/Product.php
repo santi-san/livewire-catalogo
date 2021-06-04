@@ -17,6 +17,6 @@ class Product extends Model
     }
     public function relCategory() 
     {
-        return $this->belongsTo( Category::class);
+        return $this->belongsTo(Category::class);
     }
 }
