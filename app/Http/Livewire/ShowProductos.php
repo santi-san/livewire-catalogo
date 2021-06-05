@@ -32,8 +32,8 @@ class ShowProductos extends Component
     protected $rules = [
         'product.name' =>'required|min:2|max:30',
         'product.price' =>'required',
-        'product.idMarca' =>'required',
-        'product.idCategoria' =>'required',
+        'product.brand_id' =>'required',
+        'product.category_id' =>'required',
         'product.description' =>'required',
         'product.stock' =>'required',
         'product.image' =>'required',
@@ -65,7 +65,7 @@ class ShowProductos extends Component
     {
 
         if ($this->readyToLoad) {
-            $products = Product::with('relBrand', 'relCategory')
+            $products = Product::with('relCategory', 'relBrand')
             ->where('name', 'like', '%' . $this->search .'%')
             ->orderBy($this->sort, $this->direction)
             ->paginate($this->cant);

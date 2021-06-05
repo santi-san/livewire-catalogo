@@ -14,71 +14,71 @@
 
             <div class="mb-4">
                 <x-jet-label value="Nombre"/>
-                <x-jet-input type="text" class="w-full" wire:model="prdNombre"/>
+                <x-jet-input type="text" class="w-full" wire:model="name"/>
 
                 {{-- Validation --}}
-                <x-jet-input-error for="prdNombre"/>
+                <x-jet-input-error for="name"/>
             </div>
 
             <div class="mb-4">
                 <x-jet-label value="Precio"/>
-                <x-jet-input type="number" class="w-full" wire:model="prdPrecio"/>
+                <x-jet-input type="number" class="w-full" wire:model="price"/>
 
                 {{-- Validation --}}
-                <x-jet-input-error for="prdPrecio"/>
+                <x-jet-input-error for="price"/>
             </div>
 
             <div class="mb-4">
 
-                <select name="idMarca" class="form-control" wire:model="idMarca">
+                <select name="brand_id" class="form-control" wire:model="id">
                     <option value="">Seleccione una marca</option>
-                    @foreach ($marcas as $marca)
-                        <option value="{{$marca->idMarca}}">{{ $marca->mkNombre }}</option>
+                    @foreach ($brands as $brand)
+                        <option value="{{$brand->id}}">{{ $brand->name }}</option>
                     @endforeach
                 </select>
 
                 {{-- Validation --}}
-                <x-jet-input-error for="idMarca"/>
+                <x-jet-input-error for="brand_id"/>
 
-                <select name="idCategoria" class="form-control" wire:model="idCategoria">
+                <select name="category_id" class="form-control" wire:model="category_id">
                     <option value="">Seleccione una categoria</option>
-                    @foreach ($categorias as $categoria)
-                        <option value="{{$categoria->idCategoria}}">{{ $categoria->catNombre }}</option>
+                    @foreach ($categories as $category)
+                        <option value="{{$category->id}}">{{ $category->name }}</option>
                     @endforeach
                 </select>
 
                 {{-- Validation --}}
-                <x-jet-input-error for="idCategoria"/>
+                <x-jet-input-error for="category_id"/>
             </div>
 
             <div class="mb-4" wire:ignore>
                 <x-jet-label value="Presentacion"/>
                 <textarea 
-                    wire:model="prdPresentacion"
+                    wire:model="description"
                     id="editor" 
                     class="form-control w-full" 
                     rows="6">
                 </textarea> 
 
                 {{-- Validation --}}
-                <x-jet-input-error for="prdPresentacion"/>
+                <x-jet-input-error for="description"/>
             </div>
 
             <div class="mb-4">
                 <x-jet-label value="Stock"/>
-                <x-jet-input type="number" class="w-full" wire:model="prdStock"/>
+                <x-jet-input type="number" class="w-full" wire:model="stock"/>
 
                 {{-- Validation --}}
-                <x-jet-input-error for="prdStock"/>
+                <x-jet-input-error for="stock"/>
             </div>
 
             <div class="mb-4">
-                <input type="file" wire:model="prdImagen" id="{{$identificador}}">
+                <input type="file" wire:model="image" id="{{$identificador}}">
                 {{-- Validation --}}
-                <x-jet-input-error for="prdImagen"/>
+                <x-jet-input-error for="image"/>
             </div>
 
-            <div wire:loading wire:target="prdImagen" class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
+            <div wire:loading wire:target="image" class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
                 <div class="flex">
                     <div class="py-1">
                         <svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -92,8 +92,8 @@
                 </div>
             </div>
 
-                @if ($prdImagen)
-                    <img src="{{$prdImagen->temporaryUrl()}}" alt="">
+                @if ($image)
+                    <img src="{{$image->temporaryUrl()}}" alt="">
                 @endif
             
 
@@ -105,7 +105,7 @@
                 Cancelar
             </x-jet-secondary-button>
 
-            <x-jet-danger-button wire:click="save" wire:loading.attr="disabled" wire:target="save, prdImagen" class="disabled:opacity-25">
+            <x-jet-danger-button wire:click="save" wire:loading.attr="disabled" wire:target="save, image" class="disabled:opacity-25">
                 Crear post
             </x-jet-danger-button>
 
@@ -122,7 +122,7 @@
                 .then(function(editor){
                     editor.model.document.on('change:data', () => {
                     
-                        @this.set('prdPresentacion', editor.getData());
+                        @this.set('description', editor.getData());
                     })
                 })
                 .catch( error => {

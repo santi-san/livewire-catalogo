@@ -13,10 +13,10 @@ class Product extends Model
 
     public function relBrand() 
     {
-        return $this->belongsTo(Brand::class);
+        return $this->belongsTo(Brand::class, 'brand_id', 'id');
     }
     public function relCategory() 
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 }

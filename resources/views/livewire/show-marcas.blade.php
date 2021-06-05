@@ -64,7 +64,7 @@
                                 <div class="text-sm text-gray-900">{{$brand->id}}</div>
                             </td>
                             <td class="px-6 py-4">
-                                <div class="text-sm text-gray-900">{{$brand->mkNombre}}</div>
+                                <div class="text-sm text-gray-900">{{$brand->name}}</div>
                             </td>
                             <td class="px-6 py-4 text-right text-sm font-medium">
                                 <div class="text-sm text-gray-900">editar</div>

@@ -30,9 +30,9 @@
             @if (count($products))
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
-                        <tr class="whitespace-nowrap">
+                        <tr>
                             <th scope="col"
-                                class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                class="whitespace-nowrap w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                 wire:click="order('id')">
                                 ID
 
@@ -48,7 +48,7 @@
                                 @endif
                             </th>
                             <th scope="col"
-                                class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                class="whitespace-nowrap w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                 wire:click="order('name')">
                                 Producto
 
@@ -65,7 +65,7 @@
                                 
                             </th>
                             <th scope="col"
-                                class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                class="whitespace-nowrap w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                 wire:click="order('price')">
                                 Precio
 
@@ -82,12 +82,12 @@
                                 
                             </th>
                             <th scope="col"
-                                class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                wire:click="order('name')">
+                                class="whitespace-nowrap w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                wire:click="order('brand_id')">
                                 Marca
 
                                 {{-- check later Sort --}}
-                                @if ($sort == 'name')
+                                @if ($sort == 'brand_id')
                                     @if ($direction == 'asc')
                                         <i class="fas fa-sort-alpha-up-alt ml-2"></i>
                                     @else
@@ -99,12 +99,12 @@
                                 
                             </th>
                             <th scope="col"
-                                class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                wire:click="order('name')">
+                                class="whitespace-nowrap w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                wire:click="order('category_id')">
                                 Categoria
 
                                 {{-- check later Sort --}}
-                                @if ($sort == 'name')
+                                @if ($sort == 'category_id')
                                     @if ($direction == 'asc')
                                         <i class="fas fa-sort-alpha-up-alt ml-2"></i>
                                     @else
@@ -116,7 +116,7 @@
                                 
                             </th>
                             <th scope="col"
-                                class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase "
                                 wire:click="order('description')">
                                 Descripcion
 
@@ -133,7 +133,7 @@
                                 
                             </th>
                             <th scope="col"
-                                class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                class="whitespace-nowrap w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                 wire:click="order('stock')">
                                 Stock
 
@@ -150,43 +150,43 @@
                                 
                             </th>
                             <th scope="col"
-                                class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                class="whitespace-nowrap w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Imagen
                             </th>
                             <th scope="col" 
-                                class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                class="whitespace-nowrap w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Opciones
                             </th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
                         @foreach ($products as $item)
-                        <tr class="whitespace-nowrap">
-                            <td class="px-2 py-4">
+                        <tr>
+                            <td class="px-2 py-4 whitespace-nowrap">
                                 <div class="text-sm text-gray-900">{{$item->id}}</div>
                             </td>
-                            <td class="px-2 py-4">
+                            <td class="px-2 py-4 whitespace-nowrap">
                                 <div class="text-sm text-gray-900">{{$item->name}}</div>
                             </td>
-                            <td class="px-2 py-4">
+                            <td class="px-2 py-4 whitespace-nowrap">
                                 <div class="text-sm text-gray-900">{{$item->price}}</div>
                             </td>
-                            <td class="px-2 py-4">
+                            <td class="px-2 py-4 whitespace-nowrap">
                                 <div class="text-sm text-gray-900">{{$item->relBrand->name}}</div>
                             </td>
-                            <td class="px-2 py-4">
+                            <td class="px-2 py-4 whitespace-nowrap">
                                 <div class="text-sm text-gray-900">{{$item->relCategory->name}}</div>
                             </td>
                             <td class="px-2 py-4">
-                                <div class="text-sm text-gray-900 truncate">{{$item->description}}</div>
+                                <div class="text-sm text-gray-900 w-64 truncate" title="{{$item->description}}">{{$item->description}}</div>
                             </td>
-                            <td class="px-2 py-4">
+                            <td class="px-2 py-4 whitespace-nowrap">
                                 <div class="text-sm text-gray-900">{{$item->stock}}</div>
                             </td>
-                            <td class="px-2 py-4">
+                            <td class="px-2 py-4 whitespace-nowrap">
                                <img src="{{Storage::url($item->image)}}" alt="">
                             </td>
-                            <td class="px-2 py-4 text-sm font-medium whitespace-nowrap flex">
+                            <td class="px-2 py-4 whitespace-nowrap text-sm font-medium flex">
                                 <a class="btn btn-green mx-3" wire:click="edit({{$item}})">
                                     <i class="fas fa-edit"></i>
                                 </a> 

@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Categoria;
-use App\Models\Marca;
-use App\Models\Producto;
+use App\Models\Brand;
+use App\Models\Category;
+use App\Models\Product;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -13,13 +13,13 @@ class CreateProducto extends Component
 
     use WithFileUploads;
 
-    public $prdNombre;
-    public $prdPrecio;
-    public $idMarca;
-    public $idCategoria;
-    public $prdPresentacion;
-    public $prdStock;
-    public $prdImagen;
+    public $name;
+    public $price;
+    public $category_id;
+    public $brand_id;
+    public $description;
+    public $stock;
+    public $image;
     public $identificador;
 
     public $open = false;
@@ -30,20 +30,20 @@ class CreateProducto extends Component
     }
 
     protected $rules = [
-        'prdNombre' => 'required|min:2|max:30',
-        'prdPrecio' => 'required',
-        'idMarca' => 'required',
-        'idCategoria' => 'required',
-        'prdPresentacion' => 'required',
-        'prdStock' => 'required',
-        'prdImagen' => 'required|image|max:2048',
+        'name' => 'required|min:2|max:30',
+        'price' => 'required',
+        'category_id' => 'required',
+        'brand_id' => 'required',
+        'description' => 'required',
+        'stock' => 'required',
+        'image' => 'required|image|max:2048',
     ];
 
     protected $messages = [
-        'prdNombre.required' => 'El producto no puede estar vacia.',
-        'prdNombre.min' => 'El producto debe tener al menos 2 caracteres.',
-        'prdNombre.max' => 'El producto no debe tener mas de 30 caracteres.',
-        'prdPrecio' => 'el precio',
+        'name.required' => 'El producto no puede estar vacia.',
+        'name.min' => 'El producto debe tener al menos 2 caracteres.',
+        'name.max' => 'El producto no debe tener mas de 30 caracteres.',
+        'price' => 'el precio',
     ];
 
     public function updated($propertyName)
@@ -54,16 +54,16 @@ class CreateProducto extends Component
     public function save()
     {
         $this->validate();
-        $img = $this->prdImagen->store('productos', 'public');
+        $img = $this->image->store('productos', 'public');
 
-        Producto::create([
-            'prdNombre' => $this->prdNombre,
-            'prdPrecio' => $this->prdPrecio,
-            'idMarca' => $this->idMarca,
-            'idCategoria' => $this->idCategoria,
-            'prdPresentacion' => $this->prdPresentacion,
-            'prdStock' => $this->prdStock,
-            'prdImagen' => $img,
+        Product::create([
+            'name' => $this->name,
+            'price' => $this->price,
+            'category_id' => $this->category_id,
+            'brand_id' => $this->brand_id,
+            'description' => $this->description,
+            'stock' => $this->stock,
+            'image' => $img,
         ]);
 
         $this->reset();
@@ -78,8 +78,8 @@ class CreateProducto extends Component
 
     public function render()
     {
-        $marcas = Marca::all();
-        $categorias = Categoria::all();
-        return view('livewire.create-producto', compact('marcas','categorias'));
+        $brands = Brand::all();
+        $categories = Category::all();
+        return view('livewire.create-producto', compact('brands','categories'));
     }
 }
