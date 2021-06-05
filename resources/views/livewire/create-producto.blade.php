@@ -9,7 +9,7 @@
         <x-slot name="title">
             Crear nuevo producto
         </x-slot>
-
+        
         <x-slot name="content">
 
             <div class="mb-4">
