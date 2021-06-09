@@ -108,13 +108,13 @@ class ShowProductos extends Component
     {
         $this->validate();
         if($this->image) {
-            Storage::delete([$this->product->prdImagen]);
+            Storage::delete([$this->product->image]);
 
-            $this->product->image = $this->image->store('productos', 'public');
+            $this->product->image = $this->image->store('products');
         }
         $this->product->save();
 
-        $this->reset(['open_edit','prdImagen']);
+        $this->reset(['open_edit','image']);
 
         $this->identificador = rand();
 

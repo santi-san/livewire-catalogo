@@ -30,7 +30,7 @@
 
             <div class="mb-4">
 
-                <select name="brand_id" class="form-control" wire:model.defer="id">
+                <select name="brand_id" class="form-control" wire:model="brand_id">
                     <option value="">Seleccione una marca</option>
                     @foreach ($brands as $brand)
                         <option value="{{$brand->id}}">{{ $brand->name }}</option>
@@ -40,7 +40,7 @@
                 {{-- Validation --}}
                 <x-jet-input-error for="brand_id"/>
 
-                <select name="category_id" class="form-control" wire:model.defer="category_id">
+                <select name="category_id" class="form-control" wire:model="category_id">
                     <option value="">Seleccione una categoria</option>
                     @foreach ($categories as $category)
                         <option value="{{$category->id}}">{{ $category->name }}</option>

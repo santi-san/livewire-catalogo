@@ -322,7 +322,7 @@
            .then(function(editor){
                editor.model.document.on('change:data', () => {
                
-                   @this.set('product.prdPresentacion', editor.getData());
+                   @this.set('product.description', editor.getData());
                })
            })
            .catch( error => {

@@ -54,7 +54,7 @@ class CreateProducto extends Component
     public function save()
     {
         $this->validate();
-        $img = $this->image->store('products', 'public');
+        $image = $this->image->store('products', 'public');
 
         Product::create([
             'name' => $this->name,
@@ -63,15 +63,16 @@ class CreateProducto extends Component
             'brand_id' => $this->brand_id,
             'description' => $this->description,
             'stock' => $this->stock,
-            'image' => $img,
+            'image' => $image,
         ]);
 
-        $this->reset();
+        $this->reset(['open','name','price','category_id','brand_id','description','stock',
+        'image', 'identificador']);
         # resetea el input file por medio de su id
         $this->identificador = rand();
 
         # emitTo limita el componente que escucha el evento render
-        $this->emitTo('show-productos','render');
+        $this->emitTo('show-productos', 'render');
         
         $this->emit('alert', 'El producto se creo satisfactoriamente');
     }
