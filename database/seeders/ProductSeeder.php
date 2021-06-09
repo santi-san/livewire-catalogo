@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Database\Seeder;
 
@@ -20,8 +22,8 @@ class ProductSeeder extends Seeder
             'stock' => '5',
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum nobis corrupti dolores labore odio. Deleniti, quaerat!',
             'image' => 'image.jpg',
-            'category_id' => '6',
-            'brand_id' => '12'
+            'category_id' => Category::all()->random()->id,
+            'brand_id' => Brand::all()->random()->id
         ]);
         Product::create([
             'name' => 'notebook i7',
@@ -29,8 +31,8 @@ class ProductSeeder extends Seeder
             'stock' => '5',
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum nobis corrupti dolores labore odio. Deleniti, quaerat!',
             'image' => 'image.jpg',
-            'category_id' => '4',
-            'brand_id' => '6'
+            'category_id' => Category::all()->random()->id,
+            'brand_id' => Brand::all()->random()->id
         ]);
         Product::create([
             'name' => 'mi 9',
@@ -38,8 +40,8 @@ class ProductSeeder extends Seeder
             'stock' => '12',
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum nobis corrupti dolores labore odio. Deleniti, quaerat!',
             'image' => 'image.jpg',
-            'category_id' => '2',
-            'brand_id' => '4'
+            'category_id' => Category::all()->random()->id,
+            'brand_id' => Brand::all()->random()->id
         ]);
         Product::create([
             'name' => 'Drone Mavic 2',
@@ -47,8 +49,8 @@ class ProductSeeder extends Seeder
             'stock' => '15',
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum nobis corrupti dolores labore odio. Deleniti, quaerat!',
             'image' => 'image.jpg',
-            'category_id' => '5',
-            'brand_id' => '12'
+            'category_id' => Category::all()->random()->id,
+            'brand_id' => Brand::all()->random()->id
         ]);
         Product::create([
             'name' => 'nine i7',
@@ -56,8 +58,8 @@ class ProductSeeder extends Seeder
             'stock' => '222',
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum nobis corrupti dolores labore odio. Deleniti, quaerat!',
             'image' => 'image.jpg',
-            'category_id' => '4',
-            'brand_id' => '3'
+            'category_id' => Category::all()->random()->id,
+            'brand_id' => Brand::all()->random()->id
         ]);
         Product::create([
             'name' => 'cocina electrica',
@@ -65,8 +67,8 @@ class ProductSeeder extends Seeder
             'stock' => '25',
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum nobis corrupti dolores labore odio. Deleniti, quaerat!',
             'image' => 'image.jpg',
-            'category_id' => '10',
-            'brand_id' => '7'
+            'category_id' => Category::all()->random()->id,
+            'brand_id' => Brand::all()->random()->id
         ]);
         Product::create([
             'name' => 'Lorem ipsum dol',
@@ -74,8 +76,8 @@ class ProductSeeder extends Seeder
             'stock' => '1',
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum nobis corrupti dolores labore odio. Deleniti, quaerat!',
             'image' => 'image.jpg',
-            'category_id' => '2',
-            'brand_id' => '6'
+            'category_id' => Category::all()->random()->id,
+            'brand_id' => Brand::all()->random()->id
         ]);
         Product::create([
             'name' => 'dolor sit amet consectetur a',
@@ -83,8 +85,8 @@ class ProductSeeder extends Seeder
             'stock' => '66',
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum nobis corrupti dolores labore odio. Deleniti, quaerat!',
             'image' => 'image.jpg',
-            'category_id' => '3',
-            'brand_id' => '7'
+            'category_id' => Category::all()->random()->id,
+            'brand_id' => Brand::all()->random()->id
         ]);
         Product::create([
             'name' => 'asd qwer',
@@ -92,8 +94,8 @@ class ProductSeeder extends Seeder
             'stock' => '24',
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum nobis corrupti dolores labore odio. Deleniti, quaerat!',
             'image' => 'image.jpg',
-            'category_id' => '6',
-            'brand_id' => '8'
+            'category_id' => Category::all()->random()->id,
+            'brand_id' => Brand::all()->random()->id
         ]);
         Product::create([
             'name' => 'teqe uts',
@@ -101,8 +103,8 @@ class ProductSeeder extends Seeder
             'stock' => '742',
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum nobis corrupti dolores labore odio. Deleniti, quaerat!',
             'image' => 'image.jpg',
-            'category_id' => '6',
-            'brand_id' => '9'
+            'category_id' => Category::all()->random()->id,
+            'brand_id' => Brand::all()->random()->id
         ]);
     }
 }
