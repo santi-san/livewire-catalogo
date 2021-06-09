@@ -14,7 +14,7 @@
 
             <div class="mb-4">
                 <x-jet-label value="Nombre"/>
-                <x-jet-input type="text" class="w-full" wire:model="name"/>
+                <x-jet-input type="text" class="w-full" wire:model.defer="name"/>
 
                 {{-- Validation --}}
                 <x-jet-input-error for="name"/>
@@ -22,7 +22,7 @@
 
             <div class="mb-4">
                 <x-jet-label value="Precio"/>
-                <x-jet-input type="number" class="w-full" wire:model="price"/>
+                <x-jet-input type="number" class="w-full" wire:model.defer="price"/>
 
                 {{-- Validation --}}
                 <x-jet-input-error for="price"/>
@@ -30,7 +30,7 @@
 
             <div class="mb-4">
 
-                <select name="brand_id" class="form-control" wire:model="id">
+                <select name="brand_id" class="form-control" wire:model.defer="id">
                     <option value="">Seleccione una marca</option>
                     @foreach ($brands as $brand)
                         <option value="{{$brand->id}}">{{ $brand->name }}</option>
@@ -40,7 +40,7 @@
                 {{-- Validation --}}
                 <x-jet-input-error for="brand_id"/>
 
-                <select name="category_id" class="form-control" wire:model="category_id">
+                <select name="category_id" class="form-control" wire:model.defer="category_id">
                     <option value="">Seleccione una categoria</option>
                     @foreach ($categories as $category)
                         <option value="{{$category->id}}">{{ $category->name }}</option>

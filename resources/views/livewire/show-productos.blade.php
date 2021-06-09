@@ -246,7 +246,7 @@
 
             <div class="mb-4">
                 <x-jet-label value="Stock"/>
-                <x-jet-input wire:model="product.prdStock" type="number" class="w-full"/>
+                <x-jet-input wire:model="product.stock" type="number" class="w-full"/>
             </div>
             <div class="mb-4">
                 <input type="file" wire:model="image" id="{{$identificador}}">
