@@ -108,8 +108,9 @@ class ShowProductos extends Component
     {
         $this->validate();
         if($this->image) {
-            Storage::delete([$this->product->image]);
-
+            if (file_exists('storage/products/' . $this->image)) {
+                Storage::delete([$this->product->image]);
+            }
             $this->product->image = $this->image->store('products');
         }
         $this->product->save();
@@ -124,5 +125,6 @@ class ShowProductos extends Component
 
     public function destroy(Product $product){
         $product->delete();
+        Storage::delete([$product->image]);
     }
 }

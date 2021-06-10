@@ -186,7 +186,7 @@
                             <td class="px-2 py-4 whitespace-nowrap">
                                <img src="{{Storage::url($item->image)}}" alt="">
                             </td>
-                            <td class="px-2 py-4 whitespace-nowrap text-sm font-medium flex">
+                            <td class="px-2 py-4 whitespace-nowrap text-sm font-medium">
                                 <a class="btn btn-green mx-3" wire:click="edit({{$item}})">
                                     <i class="fas fa-edit"></i>
                                 </a> 
