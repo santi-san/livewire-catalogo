@@ -15,6 +15,9 @@
                     <x-jet-nav-link href="{{ route('marcas') }}" :active="request()->routeIs('marcas')">
                         {{ __('Marcas') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('brands') }}" :active="request()->routeIs('brands')">
+                        {{ __('Brands') }}
+                    </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('categorias') }}" :active="request()->routeIs('categorias')">
                         {{ __('Categorias') }}
                     </x-jet-nav-link>
@@ -147,6 +150,9 @@
             
             <x-jet-responsive-nav-link href="{{ route('marcas') }}" :active="request()->routeIs('marcas')">
                 {{ __('Marcas') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('brands') }}" :active="request()->routeIs('brands')">
+                {{ __('Brands') }}
             </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('categorias') }}" :active="request()->routeIs('categorias')">
                 {{ __('Categorias') }}

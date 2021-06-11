@@ -21,7 +21,7 @@
                     </select>
                     <span>entradas</span>
                 </div>
-
+                 {{-- SEARCH --}}
                 <x-jet-input class="flex-1 mx-4" placeholder="Escriba lo que quiere buscar" type="text" wire:model="search"/>
                 {{-- create modal --}}
                 @livewire('create-producto')

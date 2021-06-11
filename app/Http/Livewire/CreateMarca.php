@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use App\Models\Brand;
-use App\Models\Marca;
 use Livewire\Component;
 
 class CreateMarca extends Component
