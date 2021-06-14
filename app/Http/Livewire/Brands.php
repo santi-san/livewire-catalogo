@@ -21,7 +21,7 @@ class Brands extends Component
     public $showModal = false;
     public $readyToLoad = false;
 
-
+    protected $listeners = ['destroy'];
     protected $queryString = [
         'cant' => ['except' => '10'],
         'sort' => ['except' => 'id'],
@@ -40,9 +40,6 @@ class Brands extends Component
         'website.min' => 'El sitio web debe tener al menos 5 caracteres.',
         'website.max' => 'El sitio web no debe tener mas de 100 caracteres.'
     ];
-    public function loadBrands(){
-        $this->readyToLoad = true;
-    }
 
     public function render() {
 
@@ -55,6 +52,9 @@ class Brands extends Component
             $brands = [];
         }
         return view('livewire.brands', compact('brands'));
+    }
+    public function loadBrands(){
+        $this->readyToLoad = true;
     }
    
     // reset the current page to "1" when filtering is applied.
@@ -114,5 +114,9 @@ class Brands extends Component
         $this->emit('alert', 'La marca se actualizo satisfactoriamente');
     }
 
+    // Delete method
+    public function destroy(Brand $brand){
+        $brand->delete();
+    }
     
 }

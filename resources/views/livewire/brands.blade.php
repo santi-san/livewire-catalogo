@@ -90,7 +90,7 @@
                                 <a class="btn btn-green mx-3" wire:click="updateShowModal({{$item->id}})">
                                     <i class="fas fa-edit"></i>
                                 </a> 
-                                <a class="btn btn-red ml-2 " wire:click="destroy({{$item}})">
+                                <a class="btn btn-red ml-2 " wire:click="$emit('deleteProduct', {{$item->id}})">
                                     <i class="fas fa-trash"></i>
                                 </a>
                             </td>
@@ -152,4 +152,35 @@
             @endif
         </x-slot>
    </x-jet-dialog-modal>
+
+
+    @push('js')
+
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            Livewire.on('deleteProduct', productId => {
+                Swal.fire({
+                    title: 'Estas seguro de borrar este producto?',
+                    text: "No se puede revertir este cambio!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si, borrar producto!',
+                    cancelButtonText: 'No, volver atras!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                        Livewire.emitTo('brands', 'destroy', productId )
+
+                        Swal.fire(
+                            'Deleted!',
+                            'El producto fue borrado',
+                            'success'
+                        )
+                    }
+                })
+            });
+        </script>
+   @endpush
 </div>
