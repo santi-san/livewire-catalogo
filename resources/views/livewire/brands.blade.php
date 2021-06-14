@@ -1,4 +1,4 @@
-<div>
+<div wire:init="loadBrands">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Marcas') }}
@@ -6,26 +6,14 @@
     </x-slot>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <x-table>
-            <div class="px-2 py-4 flex items-center">
-                <div class="flex items-center">
-                    <span>Mostrar</span>
-                    <select wire:model="cant" class="mx-2 form-control ">
-                        <option value="10">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                    </select>
-                    <span>entradas</span>
-                </div>
-                 {{-- SEARCH --}}
-                <x-jet-input class="flex-1 mr-4" placeholder="Escriba lo que quiere buscar" type="text" wire:model="search"/>
+            <x-table-header>
                 {{-- CREATE MODAL --}}
-                <x-jet-danger-button wire:click="createShowModal">
+                <x-jet-danger-button class="whitespace-nowrap" wire:click="createShowModal">
                     {{ __('Crear nueva marca') }}
                 </x-jet-danger-button>
-            </div>
-            {{-- TABLE --}}
-            @if ($brands->count())
+            </x-table-header>
+            {{-- TABLE & PAGINATION --}}
+            @if (count($brands))
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
@@ -85,24 +73,24 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach ($brands as $brand)
+                        @foreach ($brands as $item)
                         <tr>
                             <td class="px-6 py-4">
-                                <div class="text-sm text-gray-900">{{$brand->id}}</div>
+                                <div class="text-sm text-gray-900">{{$item->id}}</div>
                             </td>
                             <td class="px-6 py-4">
-                                <div class="text-sm text-gray-900">{{$brand->name}}</div>
+                                <div class="text-sm text-gray-900">{{$item->name}}</div>
                             </td>
                             <td class="px-6 py-4">
                                 <div class="text-sm text-gray-500 hover:text-gray-900">
-                                    <a href="{{$brand->website}}">{{$brand->website}}</a>
+                                    <a href="{{$item->website}}">{{$item->website}}</a>
                                 </div>
                             </td>
                             <td class="px-2 py-4 whitespace-nowrap text-sm font-medium">
-                                <a class="btn btn-green mx-3" wire:click="updateShowModal({{$brand->id}})">
+                                <a class="btn btn-green mx-3" wire:click="updateShowModal({{$item->id}})">
                                     <i class="fas fa-edit"></i>
                                 </a> 
-                                <a class="btn btn-red ml-2 " wire:click="destroy({{$brand}})">
+                                <a class="btn btn-red ml-2 " wire:click="destroy({{$item}})">
                                     <i class="fas fa-trash"></i>
                                 </a>
                             </td>
@@ -110,8 +98,13 @@
                         @endforeach
                     </tbody>
                 </table>
+                @if ($brands->hasPages())
+                    <div class="px-5 py-4">
+                        {{$brands->links()}}
+                    </div>
+                @endif
             @else
-                <div class="px-6 py-4">
+                <div class="px-5 py-4">
                     No se encontraron registros para <strong>{{$search}}</strong>
                 </div>
             @endif
@@ -131,17 +124,18 @@
         <x-slot name="content">
             <div class="mb-4">
                 <x-jet-label for="name" value="{{__('Nombre de la marca')}}"/>
-                <x-jet-input id="name" wire:model="brand.name" type="text" class="w-full" />
-                <x-jet-input-error for="brand.name"/>
+                <x-jet-input id="name" wire:model="name" type="text" class="w-full" />
+                <x-jet-input-error for="name"/>
             </div>
             <div class="mb-4">
                 <x-jet-label for="website" value="{{__('sitio web')}}"/>
-                <x-jet-input id="website" wire:model="brand.website" type="text" class="w-full" />
-                <x-jet-input-error for="brand.website"/>
+                <x-jet-input id="website" wire:model="website" type="text" class="w-full" />
+                <x-jet-input-error for="website"/>
             </div>
         </x-slot>
 
         <x-slot name="footer">
+            {{-- wire:click="$toggle('showModal')"  --}}
             <x-jet-secondary-button wire:click="$toggle('showModal')" wire:loading.attr="disabled">
                 {{ __('Cancelar')}}
             </x-jet-secondary-button>
@@ -157,6 +151,5 @@
                 </x-jets-button>
             @endif
         </x-slot>
-
    </x-jet-dialog-modal>
 </div>

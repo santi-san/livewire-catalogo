@@ -287,48 +287,48 @@
    </x-jet-dialog-modal>
    @push('js')
 
-   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            Livewire.on('deleteProduct', productId => {
+                Swal.fire({
+                    title: 'Estas seguro de borrar este producto?',
+                    text: "No se puede revertir este cambio!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si, borrar producto!',
+                    cancelButtonText: 'No, volver atras!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                        Livewire.emitTo('show-productos', 'destroy', productId )
+
+                        Swal.fire(
+                            'Deleted!',
+                            'El producto fue borrado',
+                            'success'
+                        )
+                    }
+                })
+            });
+        </script>
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
+
     <script>
-        Livewire.on('deleteProduct', productId => {
-            Swal.fire({
-                title: 'Estas seguro de borrar este producto?',
-                text: "No se puede revertir este cambio!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Si, borrar producto!',
-                cancelButtonText: 'No, volver atras!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-
-                    Livewire.emitTo('show-productos', 'destroy', productId )
-
-                    Swal.fire(
-                        'Deleted!',
-                        'El producto fue borrado',
-                        'success'
-                    )
-                }
+        ClassicEditor
+            .create( document.querySelector( '#editor2' ) )
+            .then(function(editor){
+                editor.model.document.on('change:data', () => {
+                
+                    @this.set('product.description', editor.getData());
+                })
             })
-        });
+            .catch( error => {
+                console.error( error );
+            } );
     </script>
-
-   <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
-
-   <script>
-       ClassicEditor
-           .create( document.querySelector( '#editor2' ) )
-           .then(function(editor){
-               editor.model.document.on('change:data', () => {
-               
-                   @this.set('product.description', editor.getData());
-               })
-           })
-           .catch( error => {
-               console.error( error );
-           } );
-   </script>
 
    @endpush
    
