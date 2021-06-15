@@ -69,8 +69,8 @@
                                 <a class="btn btn-green mx-3" wire:click="updateShowModal({{$item->id}})">
                                     <i class="mt-px fas fa-edit"></i>
                                 </a> 
-                                <a class="btn btn-red ml-2 " wire:click="$emit('deleteProduct', {{$item->id}})">
-                                    <i class="mt-px fas fa-trash"></i>
+                                <a class="btn btn-red ml-2 " wire:click="$emit('deleteCategory', '{{$item->id}}', '{{$item->relProducts->count()}}')">
+                                    <i class="fas fa-trash"></i>
                                 </a>
                             </td>
                         </tr>
@@ -132,7 +132,15 @@
 
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
-            Livewire.on('deleteProduct', id => {
+             Livewire.on('deleteCategory', function( id, productsrel) {
+                if(productsrel > 0 ){
+                    Swal.fire({
+                    title: 'Error',
+                    text: "La categoria tiene productos relacionados y no puede ser borrada",
+                    icon: 'warning'
+                })
+                    return;
+                }
                 Swal.fire({
                     title: 'Estas seguro de querer borrar esta categoria?',
                     text: "No se puede revertir este cambio!",

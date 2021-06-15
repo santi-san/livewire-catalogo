@@ -90,9 +90,8 @@
                                 <a class="btn btn-green mx-3" wire:click="updateShowModal({{$item->id}})">
                                     <i class="fas fa-edit"></i>
                                 </a> 
-                                <a class="btn btn-red ml-2 " wire:click="$emit('deleteProduct', '{{$item->id}}', '{{$item->relProducts->count()}}')">
+                                <a class="btn btn-red ml-2 " wire:click="$emit('deleteBrand', '{{$item->id}}', '{{$item->relProducts->count()}}')">
                                     <i class="fas fa-trash"></i>
-                                    {{$item->relProducts->count()}}
                                 </a>
                             </td>
                         </tr>
@@ -159,7 +158,7 @@
 
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
-            Livewire.on('deleteProduct', function( productId, productsrel) {
+            Livewire.on('deleteBrand', function( productId, productsrel) {
                 if(productsrel > 0 ){
                     Swal.fire({
                     title: 'Error',
@@ -184,7 +183,7 @@
 
                         Swal.fire(
                             'Deleted!',
-                            'El producto fue borrado',
+                            'La marca fue borrada',
                             'success'
                         )
                     }
