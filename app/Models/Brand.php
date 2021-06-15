@@ -11,4 +11,7 @@ class Brand extends Model
 
     protected $fillable = ['name','website'];
 
+    public function relProducts() {
+        return $this->hasMany(Product::class);
+    }
 }

@@ -11,4 +11,8 @@ class Category extends Model
 
     protected $fillable = ['name'];
 
+    public function relProducts() {
+        return $this->hasMany(Product::class);
+    }
+
 }

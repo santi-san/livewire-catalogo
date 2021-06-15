@@ -6,10 +6,10 @@
         </h2>
     </x-slot>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-2 lg:px-8 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-3 lg:px-8 py-12">
         <x-table>
 
-            <div class="px-2 py-4 flex items-center">
+            <div class="px-3 py-4 flex items-center">
 
                 <div class="flex items-center">
                     <span>Mostrar</span>
@@ -28,133 +28,133 @@
             </div>
             {{-- List products --}}
             @if (count($products))
-                <table class="min-w-full divide-y divide-gray-200">
+                <table class="min-w-full w-full table-auto divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
                             <th scope="col"
-                                class="whitespace-nowrap w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                class="w-36 text-left whitespace-nowrap  cursor-pointer px-4 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider"
                                 wire:click="order('id')">
                                 ID
 
                                 {{-- Sort --}}
                                 @if ($sort == 'id')
                                     @if ($direction == 'asc')
-                                        <i class="fas fa-sort-alpha-up-alt ml-2"></i>
+                                        <i class="mt-px float-right fas fa-sort-alpha-up-alt"></i>
                                     @else
-                                        <i class="fas fa-sort-alpha-down-alt ml-2"></i>
+                                        <i class="mt-px float-right fas fa-sort-alpha-down-alt"></i>
                                     @endif
                                 @else
-                                    <i class="fas fa-sort ml-2"></i>
+                                    <i class="mt-px float-right fas fa-sort"></i>
                                 @endif
                             </th>
                             <th scope="col"
-                                class="whitespace-nowrap w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                class="w-36 whitespace-nowrap  cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                 wire:click="order('name')">
                                 Producto
 
                                 {{-- Sort --}}
                                 @if ($sort == 'name')
                                     @if ($direction == 'asc')
-                                        <i class="fas fa-sort-alpha-up-alt ml-2"></i>
+                                        <i class="mt-px float-right fas fa-sort-alpha-up-alt"></i>
                                     @else
-                                        <i class="fas fa-sort-alpha-down-alt ml-2"></i>
+                                        <i class="mt-px float-right fas fa-sort-alpha-down-alt"></i>
                                     @endif
                                 @else
-                                    <i class="fas fa-sort ml-2"></i>
+                                    <i class="mt-px float-right fas fa-sort"></i>
                                 @endif
                                 
                             </th>
                             <th scope="col"
-                                class="whitespace-nowrap w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                class="w-36  whitespace-nowrap  cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                 wire:click="order('price')">
                                 Precio
 
                                 {{-- Sort --}}
                                 @if ($sort == 'price')
                                     @if ($direction == 'asc')
-                                        <i class="fas fa-sort-alpha-up-alt ml-2"></i>
+                                        <i class="mt-px float-right fas fa-sort-alpha-up-alt"></i>
                                     @else
-                                        <i class="fas fa-sort-alpha-down-alt ml-2"></i>
+                                        <i class="mt-px float-right fas fa-sort-alpha-down-alt"></i>
                                     @endif
                                 @else
-                                    <i class="fas fa-sort ml-2"></i>
+                                    <i class="mt-px float-right fas fa-sort"></i>
                                 @endif
                                 
                             </th>
                             <th scope="col"
-                                class="whitespace-nowrap w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                class="w-36  whitespace-nowrap  cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                 wire:click="order('brand_id')">
                                 Marca
 
                                 {{-- check later Sort --}}
                                 @if ($sort == 'brand_id')
                                     @if ($direction == 'asc')
-                                        <i class="fas fa-sort-alpha-up-alt ml-2"></i>
+                                        <i class="mt-px float-right fas fa-sort-alpha-up-alt"></i>
                                     @else
-                                        <i class="fas fa-sort-alpha-down-alt ml-2"></i>
+                                        <i class="mt-px float-right fas fa-sort-alpha-down-alt"></i>
                                     @endif
                                 @else
-                                    <i class="fas fa-sort ml-2"></i>
+                                    <i class="mt-px float-right fas fa-sort"></i>
                                 @endif
                                 
                             </th>
                             <th scope="col"
-                                class="whitespace-nowrap w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                class="w-36  whitespace-nowrap  cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                 wire:click="order('category_id')">
                                 Categoria
 
                                 {{-- check later Sort --}}
                                 @if ($sort == 'category_id')
                                     @if ($direction == 'asc')
-                                        <i class="fas fa-sort-alpha-up-alt ml-2"></i>
+                                        <i class="mt-px float-right fas fa-sort-alpha-up-alt"></i>
                                     @else
-                                        <i class="fas fa-sort-alpha-down-alt ml-2"></i>
+                                        <i class="mt-px float-right fas fa-sort-alpha-down-alt"></i>
                                     @endif
                                 @else
-                                    <i class="fas fa-sort ml-2"></i>
+                                    <i class="mt-px float-right fas fa-sort"></i>
                                 @endif
                                 
                             </th>
                             <th scope="col"
-                                class="w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase "
+                                class="w-36  cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase "
                                 wire:click="order('description')">
                                 Descripcion
 
                                 {{-- Sort --}}
                                 @if ($sort == 'description')
                                     @if ($direction == 'asc')
-                                        <i class="fas fa-sort-alpha-up-alt ml-2"></i>
+                                        <i class="mt-px float-right fas fa-sort-alpha-up-alt"></i>
                                     @else
-                                        <i class="fas fa-sort-alpha-down-alt ml-2"></i>
+                                        <i class="mt-px float-right fas fa-sort-alpha-down-alt"></i>
                                     @endif
                                 @else
-                                    <i class="fas fa-sort ml-2"></i>
+                                    <i class="mt-px float-right fas fa-sort"></i>
                                 @endif
                                 
                             </th>
                             <th scope="col"
-                                class="whitespace-nowrap w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                class="w-36 whitespace-nowrap  cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                 wire:click="order('stock')">
                                 Stock
 
                                 {{-- Sort --}}
                                 @if ($sort == 'stock')
                                     @if ($direction == 'asc')
-                                        <i class="fas fa-sort-alpha-up-alt ml-2"></i>
+                                        <i class="mt-px float-right fas fa-sort-alpha-up-alt"></i>
                                     @else
-                                        <i class="fas fa-sort-alpha-down-alt ml-2"></i>
+                                        <i class="mt-px float-right fas fa-sort-alpha-down-alt"></i>
                                     @endif
                                 @else
-                                    <i class="fas fa-sort ml-2"></i>
+                                    <i class="mt-px float-right fas fa-sort"></i>
                                 @endif
                                 
                             </th>
                             <th scope="col"
-                                class="whitespace-nowrap w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                class="w-36 text-center whitespace-nowrap  cursor-pointer px-4 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Imagen
                             </th>
                             <th scope="col" 
-                                class="whitespace-nowrap w-36 cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                class="w-36 text-center whitespace-nowrap  cursor-pointer px-4 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Opciones
                             </th>
                         </tr>
@@ -162,36 +162,36 @@
                     <tbody class="bg-white divide-y divide-gray-200">
                         @foreach ($products as $item)
                         <tr>
-                            <td class="px-2 py-4 whitespace-nowrap">
+                            <td class="px-4 py-4 whitespace-nowrap text-center">
                                 <div class="text-sm text-gray-900">{{$item->id}}</div>
                             </td>
-                            <td class="px-2 py-4 whitespace-nowrap">
+                            <td class="px-4 py-4 whitespace-nowrap">
                                 <div class="text-sm text-gray-900">{{$item->name}}</div>
                             </td>
-                            <td class="px-2 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">{{$item->price}}</div>
+                            <td class="px-4 py-4 whitespace-nowrap">
+                                <div class="text-sm text-center text-gray-900">{{$item->price}}</div>
                             </td>
-                            <td class="px-2 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">{{$item->relBrand->name}}</div>
+                            <td class="px-4 py-4 ">
+                                <div class="text-sm text-gray-900 w-32 truncate">{{$item->relBrand->name}}</div>
                             </td>
-                            <td class="px-2 py-4 whitespace-nowrap">
+                            <td class="px-4 py-4 whitespace-nowrap">
                                 <div class="text-sm text-gray-900">{{$item->relCategory->name}}</div>
                             </td>
-                            <td class="px-2 py-4">
-                                <div class="text-sm text-gray-900 w-64 truncate" title="{{$item->description}}">{{$item->description}}</div>
+                            <td class="px-4 py-4">
+                                <div class="text-sm text-gray-900 w-32 truncate" title="{{$item->description}}">{{$item->description}}</div>
                             </td>
-                            <td class="px-2 py-4 whitespace-nowrap">
+                            <td class="px-4 py-4 whitespace-nowrap">
                                 <div class="text-sm text-gray-900">{{$item->stock}}</div>
                             </td>
-                            <td class="px-2 py-4 whitespace-nowrap">
+                            <td class="px-4 py-4 whitespace-nowrap">
                                <img src="{{Storage::url($item->image)}}" alt="">
                             </td>
-                            <td class="px-2 py-4 whitespace-nowrap text-sm font-medium">
+                            <td class="px-4 py-4 whitespace-nowrap text-center text-sm font-medium">
                                 <a class="btn btn-green mx-3" wire:click="edit({{$item}})">
-                                    <i class="fas fa-edit"></i>
+                                    <i class="mt-px fas fa-edit"></i>
                                 </a> 
-                                <a class="btn btn-red ml-2 " wire:click="$emit('deleteProduct', {{$item->id}})">
-                                    <i class="fas fa-trash"></i>
+                                <a class="btn btn-red " wire:click="$emit('deleteProduct', {{$item->id}})">
+                                    <i class="mt-px fas fa-trash"></i>
                                 </a>
                             </td>
                         </tr>
@@ -199,12 +199,12 @@
                     </tbody>
                 </table>
                 @if ($products->hasPages())
-                    <div class="px-2 py-3">
+                    <div class="px-3 py-3">
                         {{$products->links()}}
                     </div>
                 @endif
             @else
-                <div class="px-2 py-4">
+                <div class="px-3 py-4">
                     No se encontraron registros para <strong>{{$search}}</strong>
                 </div>
             @endif
