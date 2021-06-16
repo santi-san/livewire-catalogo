@@ -2,7 +2,7 @@
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Productos') }}
+            {{ __('Productos2') }}
         </h2>
     </x-slot>
 
@@ -250,7 +250,6 @@
             </div>
             <div class="mb-4">
                 <input type="file" wire:model="image" id="{{$identificador}}">
-                {{-- Validation --}}
                 <x-jet-input-error for="image"/>
             </div>
 
@@ -270,8 +269,8 @@
 
             @if ($image)
                 <img src="{{ $image->temporaryUrl() }}" alt="">
-                @else
-                    <img src="{{Storage::url($product->image)}}" alt="">
+            @else
+                <img src="{{Storage::url($product->image)}}" alt="">
             @endif
         </x-slot>
 

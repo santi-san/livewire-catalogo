@@ -25,12 +25,12 @@
                                 {{-- Sort --}}
                                 @if ($sort == 'id')
                                     @if ($direction == 'asc')
-                                        <i class="fas fa-sort-alpha-up-alt float-right"></i>
+                                        <i class="fas fa-sort-alpha-up-alt pl-3"></i>
                                     @else
-                                        <i class="fas fa-sort-alpha-down-alt float-right"></i>
+                                        <i class="fas fa-sort-alpha-down-alt pl-3"></i>
                                     @endif
                                 @else
-                                    <i class="fas fa-sort float-right"></i>
+                                    <i class="fas fa-sort pl-3"></i>
                                 @endif
                             </th>
                             <th scope="col"
@@ -41,12 +41,12 @@
                                 {{-- Sort --}}
                                 @if ($sort == 'name')
                                     @if ($direction == 'asc')
-                                        <i class="fas fa-sort-alpha-up-alt float-right"></i>
+                                        <i class="fas fa-sort-alpha-up-alt pl-3"></i>
                                     @else
-                                        <i class="fas fa-sort-alpha-down-alt float-right"></i>
+                                        <i class="fas fa-sort-alpha-down-alt pl-3"></i>
                                     @endif
                                 @else
-                                    <i class="fas fa-sort float-right"></i>
+                                    <i class="fas fa-sort pl-3"></i>
                                 @endif
                                 
                             </th>
@@ -58,12 +58,12 @@
                                 {{-- Sort --}}
                                 @if ($sort == 'website')
                                     @if ($direction == 'asc')
-                                        <i class="fas fa-sort-alpha-up-alt float-right"></i>
+                                        <i class="fas fa-sort-alpha-up-alt pl-3"></i>
                                     @else
-                                        <i class="fas fa-sort-alpha-down-alt float-right"></i>
+                                        <i class="fas fa-sort-alpha-down-alt pl-3"></i>
                                     @endif
                                 @else
-                                    <i class="fas fa-sort float-right"></i>
+                                    <i class="fas fa-sort pl-3"></i>
                                 @endif
                             </th>
                             <th scope="col" colspan="2"
@@ -115,9 +115,9 @@
     <x-jet-dialog-modal wire:model="showModal">
         <x-slot name="title">
             @if (isset($this->brand->id))
-                {{ __(' Editar producto') }} 
+                {{ __(' Editar marca') }} 
             @else
-                {{ __(' Agregar producto') }} 
+                {{ __(' Agregar marca') }} 
             @endif
         </x-slot>
 
@@ -168,13 +168,13 @@
                     return;
                 }
                 Swal.fire({
-                    title: 'Estas seguro de borrar este producto?',
+                    title: 'Estas seguro de borrar esta marca?',
                     text: "No se puede revertir este cambio!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Si, borrar producto!',
+                    confirmButtonText: 'Si, borrar marca!',
                     cancelButtonText: 'No, volver atras!'
                 }).then((result) => {
                     if (result.isConfirmed) {

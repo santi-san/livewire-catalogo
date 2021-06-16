@@ -25,12 +25,12 @@
                                 {{-- Sort --}}
                                 @if ($sort == 'id')
                                     @if ($direction == 'asc')
-                                        <i class="mt-px fas fa-sort-alpha-up-alt float-right"></i>
+                                        <i class="mt-px fas fa-sort-alpha-up-alt pl-3"></i>
                                     @else
-                                        <i class="mt-px fas fa-sort-alpha-down-alt float-right"></i>
+                                        <i class="mt-px fas fa-sort-alpha-down-alt pl-3"></i>
                                     @endif
                                 @else
-                                    <i class="mt-px fas fa-sort float-right"></i>
+                                    <i class="mt-px fas fa-sort pl-3"></i>
                                 @endif
                             </th>
                             <th scope="col"
@@ -41,12 +41,12 @@
                                 {{-- Sort --}}
                                 @if ($sort == 'name')
                                     @if ($direction == 'asc')
-                                        <i class="mt-px fas fa-sort-alpha-up-alt float-right"></i>
+                                        <i class="mt-px fas fa-sort-alpha-up-alt pl-3"></i>
                                     @else
-                                        <i class="mt-px fas fa-sort-alpha-down-alt float-right"></i>
+                                        <i class="mt-px fas fa-sort-alpha-down-alt pl-3"></i>
                                     @endif
                                 @else
-                                    <i class="mt-px fas fa-sort float-right"></i>
+                                    <i class="mt-px fas fa-sort pl-3"></i>
                                 @endif
                                 
                             </th>

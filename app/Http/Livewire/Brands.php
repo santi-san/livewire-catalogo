@@ -4,12 +4,10 @@ namespace App\Http\Livewire;
 
 use App\Models\Brand;
 use Livewire\Component;
-use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 
 class Brands extends Component
 {
-    use WithFileUploads;
     use WithPagination;
 
     public $cant = '10';
