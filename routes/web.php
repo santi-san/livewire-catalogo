@@ -3,8 +3,6 @@
 use App\Http\Livewire\Brands;
 use App\Http\Livewire\Categories;
 use App\Http\Livewire\Products;
-use App\Http\Livewire\ShowCategorias;
-use App\Http\Livewire\ShowMarcas;
 use App\Http\Livewire\ShowProductos;
 use Illuminate\Support\Facades\Route;
 
