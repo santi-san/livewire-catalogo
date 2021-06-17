@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Http\Livewire\Brands;
 use App\Http\Livewire\Categories;
 use App\Http\Livewire\Products;
@@ -17,9 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ProductController::class, 'index'])->name('products.index');
 
 Route::middleware(['auth:sanctum', 'verified'])
         ->get('/dashboard', Brands::class)->name('dashboard');
