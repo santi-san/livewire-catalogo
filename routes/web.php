@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProductController::class, 'index'])->name('products.index');
 
+Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
+
 Route::middleware(['auth:sanctum', 'verified'])
         ->get('/dashboard', Brands::class)->name('dashboard');
 

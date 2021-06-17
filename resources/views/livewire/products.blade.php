@@ -1,8 +1,6 @@
 <div wire:init="loadProducts">
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Productos') }}
-        </h2>
     </x-slot>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <x-table>
@@ -252,9 +250,6 @@
             <div class="mb-4">
                 <input type="file" wire:model="image" id="{{$identifier}}">
                 <x-jet-input-error for="image"/>
-                <br><br>
-                {{$image}}<span> aca esta el nuevo </span><br>
-                {{$currentImage}}<span> aca esta el actual </span>
             </div>
 
             <div wire:loading wire:target="image" class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
