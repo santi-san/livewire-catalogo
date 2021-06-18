@@ -21,7 +21,14 @@ class ProductController extends Controller
 
     public function show(Product $product){
         
-        return view('products.show', compact('product'));
+        $related = Product::where('category_id', $product->category_id)
+                            ->where('id', '!=', $product->id)
+                            ->latest('id')
+                            ->take(5)
+                            ->get();
+
+
+        return view('products.show', compact('product', 'related'));
 
     }
 }
