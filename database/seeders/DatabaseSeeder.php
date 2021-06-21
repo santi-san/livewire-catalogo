@@ -21,11 +21,11 @@ class DatabaseSeeder extends Seeder
         Storage::makeDirectory('products');
 
 
-        $this->call(CategorySeeder::class);
         Category::factory(10)->create();
-        $this->call(BrandSeeder::class);
+        $this->call(CategorySeeder::class);
         Brand::factory(10)->create();
-        $this->call(ProductSeeder::class);
+        $this->call(BrandSeeder::class);
         Product::factory(45)->create();
+        $this->call(ProductSeeder::class);
     }
 }

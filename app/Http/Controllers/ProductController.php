@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use Illuminate\Http\Request;
 use Livewire\WithPagination;
 
 class ProductController extends Controller
@@ -19,8 +18,10 @@ class ProductController extends Controller
     }
 
 
-    public function show(Product $product){
-        
+    public function show($slug){
+
+       $product = Product::where('slug', $slug)->first();
+
         $related = Product::where('category_id', $product->category_id)
                             ->where('id', '!=', $product->id)
                             ->latest('id')

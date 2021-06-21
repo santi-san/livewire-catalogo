@@ -6,6 +6,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class ProductFactory extends Factory
 {
@@ -23,8 +24,10 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
+        $name = $this->faker->sentence(3);
         return [
-            'name' => $this->faker->sentence(3),
+            'name' => $name,
+            'slug' => Str::slug($name, '-'),
             'price' => $this->faker->randomFloat(2, 0, 99),
             'stock' => $this->faker->randomNumber(2, true),
             'description' => $this->faker->sentence(),
