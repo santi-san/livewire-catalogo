@@ -92,14 +92,16 @@
                     {{-- Product --}}
                     <ul>
                         @foreach ($related as $item)
-                        <li class="hover:bg-gray-800 p-2 rounded-lg mt-4 flex h-24">
-                            <img class="w-20 h-20 rounded-md" src="{{Storage::url($item->image)}}" alt="{{$item->name}}">
-                            <div class="ml-4 overflow-hidden">
-                                <span class="text-yellow-300">$ {{$item->price}} </span>
-                                <p class="text-sm text-green-700">envio gratis</p>
-                                <p class="text-sm">{{$item->description}}</p>
-                            </div>
-                        </li>
+                        <a href="{{$item->slug}}">
+                            <li class="hover:bg-gray-800 p-2 rounded-lg mt-4 flex h-24">
+                                <img class="w-20 h-20 rounded-md" src="{{Storage::url($item->image)}}" alt="{{$item->name}}">
+                                <div class="ml-4 overflow-hidden">
+                                    <span class="text-yellow-300">$ {{$item->price}} </span>
+                                    <p class="text-sm text-green-700">envio gratis</p>
+                                    <p class="text-sm">{{$item->description}}</p>
+                                </div>
+                            </li>
+                        </a>
                         @endforeach
                     </ul>
                     

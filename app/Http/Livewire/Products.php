@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
+use Illuminate\Support\Str;
 
 class Products extends Component
 {
@@ -19,7 +20,7 @@ class Products extends Component
     public $search = '';
     public $sort = 'id';
     public $direction = 'desc';
-    public $name, $price, $stock, $description, $image, $category_id, $brand_id, $identifier;
+    public $name, $slug, $price, $stock, $description, $image, $category_id, $brand_id, $identifier;
     public $currentImage;
     public $product;
     public $showModal = false;
@@ -34,6 +35,7 @@ class Products extends Component
     ];
     protected $rules = [
         'name' => 'required|min:2|max:255',
+        'slug' => 'required|unique:products,slug',
         'price' => 'required',
         'category_id' => 'required',
         'brand_id' => 'required',
@@ -104,6 +106,7 @@ class Products extends Component
         $this->resetValidation();
         $this->reset([
             'name',
+            'slug',
             'price',
             'category_id',
             'brand_id',
@@ -118,9 +121,17 @@ class Products extends Component
         $this->validate();
         Product::create([
             'name' => $this->name,
+            'slug' => $this->slug,
+            'price' => $this->price,
+            'category_id' => $this->category_id,
+            'brand_id' => $this->brand_id,
+            'description' => $this->description,
+            'stock' => $this->stock,
+            'image' => $this->image
         ]);
         $this->reset([
             'name',
+            'slug',
             'price',
             'category_id',
             'brand_id',
@@ -138,6 +149,7 @@ class Products extends Component
         $this->resetValidation();
         $this->product = $product;
         $this->name = $product->name;
+        $this->slug = $product->slug;
         $this->price = $product->price;
         $this->stock = $product->stock;
         $this->description = $product->description;
@@ -182,5 +194,13 @@ class Products extends Component
     // Delete method
     public function destroy(Product $product){
         $product->delete();
+    }
+
+
+
+    // idk
+    public function updatedName () {
+        $this->slug = Str::slug($this->name);
+        $this->validateOnly('name');   
     }
 }

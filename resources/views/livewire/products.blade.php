@@ -49,6 +49,23 @@
                             
                         </th>
                         <th scope="col"
+                            class="w-36 whitespace-nowrap  cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                            wire:click="order('slug')">
+                            Slug
+
+                            {{-- Sort --}}
+                            @if ($sort == 'slug')
+                                @if ($direction == 'asc')
+                                    <i class="mt-px pl-3 fas fa-sort-alpha-up-alt"></i>
+                                @else
+                                    <i class="mt-px pl-3 fas fa-sort-alpha-down-alt"></i>
+                                @endif
+                            @else
+                                <i class="mt-px pl-3 fas fa-sort"></i>
+                            @endif
+                            
+                        </th>
+                        <th scope="col"
                             class="w-36  whitespace-nowrap  cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                             wire:click="order('price')">
                             Precio
@@ -153,6 +170,9 @@
                             <div class="text-sm text-gray-900">{{$item->name}}</div>
                         </td>
                         <td class="px-4 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-900">{{$item->slug}}</div>
+                        </td>
+                        <td class="px-4 py-4 whitespace-nowrap">
                             <div class="text-sm text-center text-gray-900">{{$item->price}}</div>
                         </td>
                         <td class="px-4 py-4 ">
@@ -212,11 +232,16 @@
                 <x-jet-input-error for="name"/>
             </div>
             <div class="mb-4">
+                <x-jet-label for="slug" value="{{__('slug producto')}}"/>
+                <x-jet-input id="slug" wire:model.defer="slug" type="text" class="w-full" readonly/>
+                <x-jet-input-error for="slug"/>
+            </div>
+            <div class="mb-4">
                 <x-jet-label value="Precio"/>
-                <x-jet-input wire:model="price" type="number" class="w-full" />
+                <x-jet-input wire:model.defer="price" type="number" class="w-full" />
                 <x-jet-input-error for="price"/>
                 <x-jet-label value="Stock"/>
-                <x-jet-input wire:model="stock" type="number" class="w-full"/>
+                <x-jet-input wire:model.defer="stock" type="number" class="w-full"/>
                 <x-jet-input-error for="stock"/>
             </div>
             <div class="mb-4">
