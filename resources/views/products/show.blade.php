@@ -32,12 +32,12 @@
                         
                     {{-- Price + payment --}}
                     <div>
-                        <p class="text-yellow-300 text-3xl">${{$product->price}}</p>
+                        <p class="text-yellow-300 text-3xl">${{number_format($product->price, 2,',', '.')}}</p>
                      @php
                          $price = $product->price / 3;
                      @endphp
                         <p class="text-sm">
-                            en 3 cuotas de <span class="text-yellow-300">$ {{ number_format($price, 2)}}</span> sin interés.
+                            en 3 cuotas de <span class="text-yellow-300">$ {{ number_format($price, 2, ',', '.')}}</span> sin interés.
                         </p>
                         <a href="#" class="text-sm text-yellow-300">Ver los medios de pago</a>
                     </div>

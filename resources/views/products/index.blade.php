@@ -13,7 +13,7 @@
                     </div>
                     <div class="py-4 px-4">
                         <div>
-                            <span class="price dark:text-yellow-400">${{number_format($product->price, 2)}}</span>
+                            <span class="price dark:text-yellow-400">${{number_format($product->price, 2,',', '.')}}</span>
                         </div>
                         <span class="overflow-hidden max-h-11 dark:text-gray-400">{{$product->name}}</span>
                     </div>

@@ -47,6 +47,7 @@ class Products extends Component
         'name.required' => 'El producto no puede estar vacio.',
         'name.min' => 'El producto debe tener al menos 2 caracteres.',
         'name.max' => 'El producto no debe tener mas de 255 caracteres.',
+        'slug' => 'El slug no puede estar vacio',
         'price.required' => 'El precio no puede estar vacio.',
         'category_id.required' => 'La categoria no puede estar vacia',
         'brand_id.required' => 'La marca no puede estar vacia',
@@ -162,7 +163,7 @@ class Products extends Component
     public function update() {
         $rules = [
             'name' => 'required|min:2|max:255',
-            'slug' => "required|unique:products,slug,{$this->product}",
+            'slug' => "required|unique:products,slug,{$this->product->id}",
             'price' => 'required',
             'category_id' => 'required',
             'brand_id' => 'required',
@@ -170,6 +171,18 @@ class Products extends Component
             'stock' => 'required',
             'image' => 'nullable|image|max:2048',
         ];
+        $messages = [
+            'name.required' => 'El producto no puede estar vacio.',
+            'name.min' => 'El producto debe tener al menos 2 caracteres.',
+            'name.max' => 'El producto no debe tener mas de 255 caracteres.',
+            'price.required' => 'El precio no puede estar vacio.',
+            'category_id.required' => 'La categoria no puede estar vacia',
+            'brand_id.required' => 'La marca no puede estar vacia',
+            'description.required' => 'La descripcion no puede estar vacia',
+            'stock.required' => 'El stock no puede estar vacio',
+            'image.required' => 'La imagen no puede estar vacia',
+        ];
+        $this->validate($rules, $messages);
         if($this->image) {
             if (file_exists('storage/' . $this->currentImage)) {
                 Storage::delete([$this->currentImage]);
@@ -182,6 +195,7 @@ class Products extends Component
 
         $this->product = Product::find($this->product->id);
         $this->product->name = $this->name;
+        $this->product->slug = $this->slug;
         $this->product->price = $this->price;
         $this->product->stock = $this->stock;
         $this->product->description = $this->description;
