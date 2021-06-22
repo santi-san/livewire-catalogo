@@ -119,6 +119,7 @@ class Products extends Component
     }
     public function store() {
         $this->validate();
+        $image = $this->image->store('products', 'public');
         Product::create([
             'name' => $this->name,
             'slug' => $this->slug,
@@ -127,7 +128,7 @@ class Products extends Component
             'brand_id' => $this->brand_id,
             'description' => $this->description,
             'stock' => $this->stock,
-            'image' => $this->image
+            'image' => $image
         ]);
         $this->reset([
             'name',
@@ -159,12 +160,24 @@ class Products extends Component
         $this->showModal = true;
     }
     public function update() {
-        $this->validate();
+        $rules = [
+            'name' => 'required|min:2|max:255',
+            'slug' => "required|unique:products,slug,{$this->product}",
+            'price' => 'required',
+            'category_id' => 'required',
+            'brand_id' => 'required',
+            'description' => 'required',
+            'stock' => 'required',
+            'image' => 'nullable|image|max:2048',
+        ];
         if($this->image) {
             if (file_exists('storage/' . $this->currentImage)) {
                 Storage::delete([$this->currentImage]);
             }
             $this->image = $this->image->store('products');
+        }
+        else{
+            $this->image = $this->currentImage;
         }
 
         $this->product = Product::find($this->product->id);
