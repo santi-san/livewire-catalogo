@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Admin;
 
 use App\Models\Brand;
 use Livewire\Component;
@@ -39,18 +39,20 @@ class Brands extends Component
         'website.max' => 'El sitio web no debe tener mas de 100 caracteres.'
     ];
 
-    public function render() {
+    public function render()
+    {
 
         if ($this->readyToLoad) {
-        $brands = Brand::where('name', 'like', '%' . $this->search .'%')
-                        ->orderBy($this->sort, $this->direction)
-                        ->paginate($this->cant);
-        }
-        else{
-            $brands = [];
-        }
-        return view('livewire.brands', compact('brands'));
+            $brands = Brand::where('name', 'like', '%' . $this->search .'%')
+                            ->orderBy($this->sort, $this->direction)
+                            ->paginate($this->cant);
+            }
+            else{
+                $brands = [];
+            }
+        return view('livewire.admin.brands', compact('brands'));
     }
+
     public function loadBrands(){
         $this->readyToLoad = true;
     }
@@ -116,5 +118,4 @@ class Brands extends Component
     public function destroy(Brand $brand){
         $brand->delete();
     }
-    
 }

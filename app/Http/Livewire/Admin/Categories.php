@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Admin;
 
 use App\Models\Category;
 use Livewire\Component;
@@ -45,7 +45,7 @@ class Categories extends Component
             else{
                 $categories = [];
             }
-        return view('livewire.categories', compact('categories'));
+        return view('livewire.admin.categories', compact('categories'));
     }
 
 

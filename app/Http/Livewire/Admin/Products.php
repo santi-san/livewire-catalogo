@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Admin;
 
 use App\Models\Brand;
 use App\Models\Category;
@@ -68,7 +68,7 @@ class Products extends Component
         }
         $brands = Brand::all();
         $categories = Category::all();
-        return view('livewire.products', compact('products','brands','categories'));
+        return view('livewire.admin.products', compact('products','brands','categories'));
     }
 
     public function mount()

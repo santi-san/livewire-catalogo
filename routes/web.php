@@ -1,10 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
-use App\Http\Livewire\Brands;
-use App\Http\Livewire\Categories;
-use App\Http\Livewire\Products;
-use App\Http\Livewire\ShowProductos;
+use App\Http\Livewire\Admin\Home;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,23 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ProductController::class, 'index'])->name('products.index');
+Route::get('/', Home::class)->name('index');
 
-Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
+Route::get('/productos/{product}', [ProductController::class, 'show'])->name('products.show');
 
-Route::middleware(['auth:sanctum', 'verified'])
-        ->get('/dashboard', Brands::class)->name('dashboard');
-
-Route::middleware(['auth:sanctum', 'verified'])
-        ->get('/marcas', Brands::class)->name('marcas');
-
-Route::middleware(['auth:sanctum', 'verified'])
-        ->get('/brands', Brands::class)->name('brands');
-
-Route::middleware(['auth:sanctum', 'verified'])
-        ->get('/categorias', Categories::class)->name('categorias');
-
-Route::middleware(['auth:sanctum', 'verified'])
-        ->get('/productos2', ShowProductos::class)->name('productos2');
-Route::middleware(['auth:sanctum', 'verified'])
-        ->get('/productos', Products::class)->name('productos');

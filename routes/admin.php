@@ -1,6 +1,17 @@
 <?php
 
-use App\Http\Controllers\ProductController;
+use App\Http\Livewire\Admin\Home;
+use App\Http\Livewire\Admin\Brands;
+use App\Http\Livewire\Admin\Categories;
+use App\Http\Livewire\Admin\Products;
 use Illuminate\Support\Facades\Route;
 
-Route::get('', [ProductController::class, 'index']);
+
+Route::get('/', Home::class)->name('home');
+
+
+Route::get('/marcas', Brands::class)->name('admin.marcas');
+
+Route::get('/categorias', Categories::class)->name('admin.categorias');
+
+Route::get('/productos', Products::class)->name('admin.productos');

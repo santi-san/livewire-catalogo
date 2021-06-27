@@ -149,7 +149,7 @@
                 </x-jets-button>
             @endif
         </x-slot>
-   </x-jet-dialog-modal>
+</x-jet-dialog-modal>
 
 
     @push('js')
