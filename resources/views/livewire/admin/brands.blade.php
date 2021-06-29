@@ -177,7 +177,7 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
 
-                        Livewire.emitTo('brands', 'destroy', productId )
+                        Livewire.emitTo('admin.brands', 'destroy', productId )
 
                         Swal.fire(
                             'Deleted!',

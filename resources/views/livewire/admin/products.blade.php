@@ -194,7 +194,7 @@
                             <a class="btn btn-green mx-3" wire:click="updateShowModal({{$item->id}})">
                                 <i class="fas fa-edit"></i>
                             </a> 
-                            <a class="btn btn-red ml-2 " wire:click="$emit('deleteProduct', '{{$item->id}}')">
+                            <a class="btn btn-red ml-2 " wire:click="$emit('deleteProduct', {{ $item->id }})">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </td>
@@ -276,9 +276,6 @@
                 <input type="file" wire:model="image" id="{{$identifier}}">
                 <x-jet-input-error for="image"/>
             </div>
-            {{'image' . $this->image}} <br>
-            {{'currentImage' . $this->currentImage}}
-
             <div wire:loading wire:target="image" class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
                 <div class="flex">
                     <div class="py-1">
@@ -293,11 +290,6 @@
                 </div>
             </div>
 
-            {{-- @if ($newImage)
-                <img src="{{Storage::url($product->image)}}" alt="">
-            @elseif ($image)
-                <img src="{{ $image->temporaryUrl() }}" alt=""> 
-            @endif  --}}
             @if ($image)
                 <img src="{{ $image->temporaryUrl() }}" alt=""> 
             @elseif ($currentImage)
@@ -343,7 +335,7 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
 
-                        Livewire.emitTo('products', 'destroy', productId )
+                        Livewire.emitTo('admin.products', 'destroy', productId);
 
                         Swal.fire(
                             'Borrado!',

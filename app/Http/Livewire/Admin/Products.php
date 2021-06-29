@@ -220,6 +220,7 @@ class Products extends Component
 
     // Delete method
     public function destroy(Product $product){
+        
         $product->delete();
     }
 

@@ -16,7 +16,7 @@ class Users extends Component
     public $sort = 'id';
     public $direction = 'desc';
     public $name, $email;
-    public $roles = [];
+    public $roless = [];
     public $user;
     public $showModal = false;
     public $readyToLoad = false;
@@ -83,6 +83,7 @@ class Users extends Component
     // Update methods
     public function updateShowModal(User $user) {
         $this->resetValidation();
+        // $this->roles = Role::all();
         $this->user = $user;
         $this->name = $this->user->name;
         $this->email = $this->user->email;

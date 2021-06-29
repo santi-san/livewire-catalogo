@@ -151,7 +151,7 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
 
-                        Livewire.emitTo('categories', 'destroy', id )
+                        Livewire.emitTo('admin.categories', 'destroy', id )
 
                         Swal.fire(
                             'Deleted!',

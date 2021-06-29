@@ -145,8 +145,8 @@
             <div class="mb-4">
                 @foreach ( $roles as $role )
                        
-                <input type="checkbox"  name="roles[]" value="{{$role->id}}" >
-                <span>{{ $role->name }}</span>
+                    <input type="checkbox" wire:model="user" value="{{$role->id}}" >
+                    <span>{{ $role->name }}</span>
             
                 @endforeach
                 
@@ -175,7 +175,6 @@
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
             Livewire.on('deleteUser', userId => {
-               
                 Swal.fire({
                     title: 'Estas seguro de borrar este usuario?',
                     text: "No se puede revertir este cambio!",
@@ -188,10 +187,10 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
 
-                        Livewire.emitTo('users', 'destroy', userId )
+                        Livewire.emitTo('admin.users', 'destroy', userId )
 
                         Swal.fire(
-                            'Deleted!',
+                            'Borrado!',
                             'El usuario fue borrado',
                             'success'
                         )
