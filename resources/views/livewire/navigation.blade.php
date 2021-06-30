@@ -40,14 +40,18 @@
                     <div class="flex space-x-4">
                     <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                     <a href="#" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Dashboard</a>
-        
-                    <a href="{{ route('admin.usuarios') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{{ __('Usuarios') }}</a>
-                    
-                    <a href="{{ route('admin.marcas') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{{ __('Marcas') }}</a>
-        
-                    <a href="{{ route('admin.categorias') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{{ __('Categorias') }}</a>
-        
-                    <a href="{{ route('admin.productos') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{{ __('Productos') }}</a>
+                    @can('admin.usuarios')
+                        <a href="{{ route('admin.usuarios') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{{ __('Usuarios') }}</a>
+                    @endcan
+                    @can('admin.marcas')
+                        <a href="{{ route('admin.marcas') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{{ __('Marcas') }}</a>
+                    @endcan
+                    @can('admin.categorias')
+                        <a href="{{ route('admin.categorias') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{{ __('Categorias') }}</a>
+                    @endcan
+                    @can('admin.productos')
+                        <a href="{{ route('admin.productos') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{{ __('Productos') }}</a>
+                    @endcan
                     </div>
                 </div>
             </div>
@@ -88,6 +92,10 @@
                         <div x-show="open" x-on:click.away="open = false" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                             <!-- Active: "bg-gray-100", Not Active: "" -->
                             <a href="{{route('profile.show')}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1" id="user-menu-item-0">{{ __('Tu perfil') }}</a>
+                            @can('admin.home')
+                                <a href="{{route('admin.home')}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1" id="user-menu-item-0">{{ __('Dashboard') }}</a>
+                            @endcan
+
 
 
                             <form method="POST" action="{{ route('logout') }}">
