@@ -8,12 +8,12 @@ use App\Http\Livewire\Admin\Users;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', Home::class)->name('admin.home');
+Route::get('/', Home::class)->middleware('can:admin.home' )->name('admin.home');
 
-Route::get('/usuarios', Users::class)->name('admin.usuarios');
+Route::get('/usuarios', Users::class)->middleware('can:admin.usuarios' )->name('admin.usuarios');
 
-Route::get('/marcas', Brands::class)->name('admin.marcas');
+Route::get('/marcas', Brands::class)->middleware('can:admin.marcas' )->name('admin.marcas');
 
-Route::get('/categorias', Categories::class)->name('admin.categorias');
+Route::get('/categorias', Categories::class)->middleware('can:admin.categorias' )->name('admin.categorias');
 
-Route::get('/productos', Products::class)->name('admin.productos');
+Route::get('/productos', Products::class)->middleware('can:admin.productos' )->name('admin.productos');
